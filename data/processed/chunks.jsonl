@@ -1,0 +1,1600 @@
+{
+  "chunk_id": "mastercard_displaying-tokenized-pan-details_chunk_001",
+  "text": "# Display Tokenized PAN Details\nCardholders may view, use, or manage their cards during the profile management or checkout experience.\nIntegrators can also choose to provide a visual representation of their cards (that is, by using card art) that allows consumers to easily recognize and select a specific card – enhancing the overall checkout experience and improving the conversion rates.\nUse the [GET Card API](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#card) endpoint to fetch the most updated card details for a specific PAN in the following scenarios:\n- Creating a screen for cardholders to manage cards associated with their profile.",
+  "metadata": {
+    "document_id": "mastercard_displaying-tokenized-pan-details",
+    "source_file": "data/raw/mastercard_displaying-tokenized-pan-details.md",
+    "source_type": "markdown",
+    "title": "Display Tokenized PAN Details",
+    "section": "Display Tokenized PAN Details",
+    "chunk_index": 1,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/displaying-tokenized-pan-details/"
+  }
+}
+{
+  "chunk_id": "mastercard_displaying-tokenized-pan-details_chunk_002",
+  "text": "- Creating a screen for cardholders to manage cards associated with their profile.\n- Providing an option for cardholders to select between cards before making a payment.\n## Key Considerations\n---\n- If you maintain a local version of the token (`srcDigitalCardId`), keep it updated using the GET Card API and by listening to the [Card Notifications](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#notifications).",
+  "metadata": {
+    "document_id": "mastercard_displaying-tokenized-pan-details",
+    "source_file": "data/raw/mastercard_displaying-tokenized-pan-details.md",
+    "source_type": "markdown",
+    "title": "Display Tokenized PAN Details",
+    "section": "Display Tokenized PAN Details",
+    "chunk_index": 2,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/displaying-tokenized-pan-details/"
+  }
+}
+{
+  "chunk_id": "mastercard_displaying-tokenized-pan-details_chunk_003",
+  "text": "- If you maintain a local version of the token (`srcDigitalCardId`), keep it updated using the GET Card API and by listening to the [Card Notifications](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#notifications).\n- If you decide to display card art, utilize the `artUri` found in the [maskedCard.digitalCardData](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/sdk-reference/common-objects/#masked-card) object. Any future updates to card art will always result in a newly-issued `artUri`.",
+  "metadata": {
+    "document_id": "mastercard_displaying-tokenized-pan-details",
+    "source_file": "data/raw/mastercard_displaying-tokenized-pan-details.md",
+    "source_type": "markdown",
+    "title": "Display Tokenized PAN Details",
+    "section": "Key Considerations",
+    "chunk_index": 3,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/displaying-tokenized-pan-details/"
+  }
+}
+{
+  "chunk_id": "mastercard_displaying-tokenized-pan-details_chunk_004",
+  "text": "- If you decide to display card art, utilize the `artUri` found in the [maskedCard.digitalCardData](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/sdk-reference/common-objects/#masked-card) object. Any future updates to card art will always result in a newly-issued `artUri`.\n- Display the consumer's card details on your UI according to the [Mastercard Brand guidelines](https://brand.mastercard.com/brandcenter/mastercard-brand-mark.html).\n## Token Status and Card Details\n---\n**Guidelines for displaying card details:**\n| Token Status | Description | UI Recommendation | Authorization |\n|---|---|---|---|",
+  "metadata": {
+    "document_id": "mastercard_displaying-tokenized-pan-details",
+    "source_file": "data/raw/mastercard_displaying-tokenized-pan-details.md",
+    "source_type": "markdown",
+    "title": "Display Tokenized PAN Details",
+    "section": "Key Considerations",
+    "chunk_index": 4,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/displaying-tokenized-pan-details/"
+  }
+}
+{
+  "chunk_id": "mastercard_displaying-tokenized-pan-details_chunk_005",
+  "text": "---\n**Guidelines for displaying card details:**\n| Token Status | Description | UI Recommendation | Authorization |\n|---|---|---|---|\n| **SUSPENDED** | Token is suspended and unable to transact. | Show grayed card without `panLastFour`. | Token cannot be used (nor should be attempted) for payment authorization. |\n| **ACTIVE** | Token has been unsuspended/reactivated and can be used for transactions. | Show card with `panLastFour`. | Token can be used for payment authorization. |\n| **CANCELLED** | Token has been permanently cancelled. | Do not show card or `panLastFour`. | Token cannot be used (nor should be attempted) for payment authorization. |",
+  "metadata": {
+    "document_id": "mastercard_displaying-tokenized-pan-details",
+    "source_file": "data/raw/mastercard_displaying-tokenized-pan-details.md",
+    "source_type": "markdown",
+    "title": "Display Tokenized PAN Details",
+    "section": "Token Status and Card Details",
+    "chunk_index": 5,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/displaying-tokenized-pan-details/"
+  }
+}
+{
+  "chunk_id": "mastercard_displaying-tokenized-pan-details_chunk_006",
+  "text": "| **CANCELLED** | Token has been permanently cancelled. | Do not show card or `panLastFour`. | Token cannot be used (nor should be attempted) for payment authorization. |\n**Tip**: To minimize network congestion, keep a local copy of the token and keep it updated by [listening to the Card Notifications](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/), instead of retrieving the token details by making repeated GET Card API requests.",
+  "metadata": {
+    "document_id": "mastercard_displaying-tokenized-pan-details",
+    "source_file": "data/raw/mastercard_displaying-tokenized-pan-details.md",
+    "source_type": "markdown",
+    "title": "Display Tokenized PAN Details",
+    "section": "Token Status and Card Details",
+    "chunk_index": 6,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/displaying-tokenized-pan-details/"
+  }
+}
+{
+  "chunk_id": "mastercard_displaying-tokenized-pan-details_chunk_007",
+  "text": "**Tip**: To minimize network congestion, keep a local copy of the token and keep it updated by [listening to the Card Notifications](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/), instead of retrieving the token details by making repeated GET Card API requests.\n*(Sequence diagram: Integrator calls Get Card (GET /cards/{cardId}) with srcClientId, srcDigitalCardId, and tokenRequested=false. Mastercard Checkout Solutions looks up the cardId and returns masked card info. If tokenRequested=true, Mastercard additionally looks up the cardId, retrieves the encrypted token detail data, and returns a Token Data Response containing card metadata with encrypted token details.)*",
+  "metadata": {
+    "document_id": "mastercard_displaying-tokenized-pan-details",
+    "source_file": "data/raw/mastercard_displaying-tokenized-pan-details.md",
+    "source_type": "markdown",
+    "title": "Display Tokenized PAN Details",
+    "section": "Token Status and Card Details",
+    "chunk_index": 7,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/displaying-tokenized-pan-details/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_001",
+  "text": "# Make Payments\nOnce cardholders store their cards and the Integrator [tokenizes their PAN details](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/), these tokens (instead of the PAN or Primary Account Numbers) are used for seamless and secure transactions.\n**Note**: Once a token is created for the consumer, use that token for all future transactions done by that consumer. Do not re-tokenize every time a transaction occurs or when consumer checks out.\n## Cardholder-Initiated Transaction\n---",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Make Payments",
+    "chunk_index": 1,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_002",
+  "text": "## Cardholder-Initiated Transaction\n---\nWhen the cardholder is present while completing the payment, it is called a *cardholder-initiated transaction*. You can facilitate this payment by:\n1. Calling the [Checkout API](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#checkout) and passing the token identifier (`srcDigitalCardId`) associated with that consumer.\n2. Retrieving the encrypted payload containing a token and cryptogram and submitting it for payment authorization. Cryptogram acts as a 'one-time' code that is required to validate the cardholder-initiated transactions.",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Cardholder-Initiated Transaction",
+    "chunk_index": 2,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_003",
+  "text": "2. Retrieving the encrypted payload containing a token and cryptogram and submitting it for payment authorization. Cryptogram acts as a 'one-time' code that is required to validate the cardholder-initiated transactions.\n*(Sequence diagram: Integrator calls Checkout (POST /transaction/credentials) — the request and response may contain `assuranceData` for transaction authentication. Mastercard Checkout Solutions returns an encoded checkout JWS response containing a JWE (which contains the cryptogram). The Integrator sends a Payment Authorization Request to the Acquirer or Payment Processor, which returns an Authorization response.)*\nDetailed steps are explained below:",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Cardholder-Initiated Transaction",
+    "chunk_index": 3,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_004",
+  "text": "Detailed steps are explained below:\n**Call the Checkout API request**",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Cardholder-Initiated Transaction",
+    "chunk_index": 4,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_005",
+  "text": "1. Use the `srcDigitalCardId` from the [Enroll Card](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#card) response and call the [Checkout API](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#checkout) request. Pass the `assuranceData` for transaction authentication in Checkout API request.",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Cardholder-Initiated Transaction",
+    "chunk_index": 5,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_006",
+  "text": "For integration steps, see the [Integrate with Secure Card on File](https://developer.mastercard.com/mastercard-checkout-solutions/tutorial/integrate_apis_scof/step7/) tutorial, and for use cases see [Authentication with Passkey](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/token-authentication/secure-card-on-file/by-mastercard/authentication-with-passkey/create-passkey/).",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Cardholder-Initiated Transaction",
+    "chunk_index": 6,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_007",
+  "text": "2. Decode the `checkoutResponseJWS` to extract the `encryptedPayload`. Decrypt the `encryptedPayload` to extract the token and cryptogram. The decrypted payload may also contain authentication results in `assuranceData` object. For examples, see the [Integrate with Secure Card on File](https://developer.mastercard.com/mastercard-checkout-solutions/tutorial/integrate_apis_scof/step7/) tutorial.\n**Submit the token details for payment authorization**\n3. Submit the token (instead of the PAN), cryptogram and token expiry date (returned in the checkout response) to your acquirer or payment processor for payment authorization.",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Cardholder-Initiated Transaction",
+    "chunk_index": 7,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_008",
+  "text": "3. Submit the token (instead of the PAN), cryptogram and token expiry date (returned in the checkout response) to your acquirer or payment processor for payment authorization.\n4. Acquirer or Payment processor sends an authorization response to the Integrator.\n**Note**: In case of On-Behalf-Of programs, the merchant can submit the authorization request through an alternative payment gateway, provided the payment gateway and acquirers support [DSRP (Digital Secure Remote Payment)](https://developer.mastercard.com/mastercard-checkout-solutions/tutorial/integrate_apis/step8/).\n**Warning**:",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Cardholder-Initiated Transaction",
+    "chunk_index": 8,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_009",
+  "text": "**Warning**:\n- The acquirer that will process these transactions must accept DSRP card-on-file tokens and e-commerce Security Level Indicator (SLI) values of **246** for standard payments and **247** for recurring/partial shipment payments. DSRP cryptogram is required to be sent in the DE104 – DPD (Digital Payment Data) field. Please refer to [AN 3363](https://www.mastercardconnect.com/-/sign-in?MCCRedirectTo=https://w204.mastercardconnect.com%2FFIMIDP%2Fsps%2Fauth) for more details.",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Cardholder-Initiated Transaction",
+    "chunk_index": 9,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_010",
+  "text": "- The acquirer that will process these transactions must accept DSRP card-on-file tokens and e-commerce Security Level Indicator (SLI) values of **246** for standard payments and **247** for recurring/partial shipment payments. DSRP cryptogram is required to be sent in the DE104 – DPD (Digital Payment Data) field. Please refer to [AN 3363](https://www.mastercardconnect.com/-/sign-in?MCCRedirectTo=https://w204.mastercardconnect.com%2FFIMIDP%2Fsps%2Fauth) for more details.\n- If a transaction declines, the Acquirer must request the Token Requester for the latest token and cryptogram for authorization. Retrying the invalid cryptogram more than 10 times may potentially lock the token.",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Cardholder-Initiated Transaction",
+    "chunk_index": 10,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_011",
+  "text": "- If a transaction declines, the Acquirer must request the Token Requester for the latest token and cryptogram for authorization. Retrying the invalid cryptogram more than 10 times may potentially lock the token.\n### Managing Cryptograms\n---\nCryptograms validate cardholder-initiated transactions, and they must be unique for each transaction request. Note that reusing the cryptogram will result in transaction getting declined as a replayed attempt.\nIf re-attempting a transaction, submit a new cryptogram with the correct token details from the [Checkout API](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#checkout).\n**Key Considerations:**",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Managing Cryptograms",
+    "chunk_index": 11,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_012",
+  "text": "**Key Considerations:**\n- [PCI SSC](https://www.pcisecuritystandards.org/) has defined Cryptograms as sensitive information and hence Mastercard strongly recommends not to store Cryptograms.\n- Tokens and cryptograms are protected under the requirements of PCI DSS, and so storing both items together presents similar risks as storing a cardholder's PAN.\n- It is recommended to use the cryptograms generated for a particular token in the order they are obtained.\n**Note**: Cryptograms may expire 5 days after they are generated from the Checkout API. See [AN 6302](https://techdocs.mastercard.com/bundle/m_AN6302/page/tqi1649380838881.html) for details.\n### Checkout with Enhanced Data\n---",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Managing Cryptograms",
+    "chunk_index": 12,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_013",
+  "text": "### Checkout with Enhanced Data\n---\nIntegrators can provide additional, optional data for use by Issuers to further improve transaction performance.\n**Digital Transaction Data**\nCardholder data provided in the [Checkout API](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#checkout) will be available in the subsequent authorization approval request, providing Issuers with increased assurance on cardholder identity.\nThe following data will be provided to Issuers in the payment authorization message if shared in the checkout request. Not all data are required, individual data can be provided and shared with the issuer:",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Checkout with Enhanced Data",
+    "chunk_index": 13,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_014",
+  "text": "The following data will be provided to Issuers in the payment authorization message if shared in the checkout request. Not all data are required, individual data can be provided and shared with the issuer:\n- `digitalTransactionData.phoneNumber`\n- `digitalTransactionData.deviceLocation`\n- `digitalTransactionData.emailAddressFormat`\n- `digitalTransactionData.emailAddress`\n- `digitalTransactionData.ipAddress`\n- `shippingAddress.address.line1`\n- `shippingAddress.address.countryCode`\n- `shippingAddress.address.zip`\n**Note**:\n- The `transactionAmount` must be >0 in the Checkout API request for the data to be shared to the Issuer.",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Checkout with Enhanced Data",
+    "chunk_index": 14,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_015",
+  "text": "- `shippingAddress.address.zip`\n**Note**:\n- The `transactionAmount` must be >0 in the Checkout API request for the data to be shared to the Issuer.\n- To provide Digital Transaction Data to Issuers, client configuration is required. Please contact your Mastercard representative for more information.\n**Digital Transaction Insights (DTI) fraud risk score**",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Checkout with Enhanced Data",
+    "chunk_index": 15,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_016",
+  "text": "**Digital Transaction Insights (DTI) fraud risk score**\nIntegrators can generate and include a [Mastercard Identity Check](https://developer.mastercard.com/product/identity-check) Digital Transaction Insights fraud score in the authorization approval request by providing additional data in the [Checkout API](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#checkout) request. This enriches Issuer approval logic and can lead to increased transaction performance.\nThe following data are required for the DTI score to be generated:\n- `dpaData.dpaURI` or `dpaData.dpaData` or `dpaData.PresentationName`\n- `dpaData.dpaName`",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Checkout with Enhanced Data",
+    "chunk_index": 16,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_017",
+  "text": "- `dpaData.dpaURI` or `dpaData.dpaData` or `dpaData.PresentationName`\n- `dpaData.dpaName`\n- `dpaTransactionOptions.transactionAmount.transactionAmount`\n- `dpaTransactionOptions.transactionAmount.transactionCurrencyCode`\n- `dpaTransactionOptions.merchantCategoryCode`\n- `dpaTransactionOptions.threeDsInputData.browser.javascriptEnabled`\n- `dpaTransactionOptions.threeDsInputData.browser.javaEnabled`\n- `dpaTransactionOptions.threeDsInputData.browser.acceptHeader`\n- `dpaTransactionOptions.threeDsInputData.browser.language`\n- `dpaTransactionOptions.threeDsInputData.browser.colorDepth`\n- `dpaTransactionOptions.threeDsInputData.browser.screenHeight`",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Checkout with Enhanced Data",
+    "chunk_index": 17,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_018",
+  "text": "- `dpaTransactionOptions.threeDsInputData.browser.colorDepth`\n- `dpaTransactionOptions.threeDsInputData.browser.screenHeight`\n- `dpaTransactionOptions.threeDsInputData.browser.screenWidth`\n- `dpaTransactionOptions.threeDsInputData.browser.browser.tz`\n- `dpaTransactionOptions.threeDsInputData.browser.browser.userAgent`\nThe following data are optional but will enhance the DTI score if provided:\n- `billingAddress.address.line1`\n- `billingAddress.address.line2`\n- `billingAddress.address.line3`\n- `billingAddress.address.zip`\n- `billingAddress.address.city`\n- `billingAddress.address.state`\n- `billingAddress.address.countryCode`\n- `shippingAddress.address.line1`\n- `shippingAddress.address.line2`",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Checkout with Enhanced Data",
+    "chunk_index": 18,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_019",
+  "text": "- `billingAddress.address.state`\n- `billingAddress.address.countryCode`\n- `shippingAddress.address.line1`\n- `shippingAddress.address.line2`\n- `shippingAddress.address.line3`\n- `shippingAddress.address.zip`\n- `shippingAddress.address.city`\n- `shippingAddress.address.state`\n- `shippingAddress.address.countryCode`\n- `dpaTransactionOptions.merchantCountryCode`\n- `dpaTransactionOptions.threeDsInputData.acquirer.bin`\n- `dpaTransactionOptions.threeDsInputData.acquirer.merchantID`\n**Note**: The `transactionAmount` must be >0 in the Checkout API request for data to be shared to the Issuer.\n## Merchant-Initiated Transaction\n---",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Checkout with Enhanced Data",
+    "chunk_index": 19,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_020",
+  "text": "**Note**: The `transactionAmount` must be >0 in the Checkout API request for data to be shared to the Issuer.\n## Merchant-Initiated Transaction\n---\nConsumers may also store their cards and allow the business to make payments (merchant-initiated transaction) on their behalf. For instance, businesses submit payments for consumers on a recurring basis for subscription-based services.",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Merchant-Initiated Transaction",
+    "chunk_index": 20,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_021",
+  "text": "Consumers may also store their cards and allow the business to make payments (merchant-initiated transaction) on their behalf. For instance, businesses submit payments for consumers on a recurring basis for subscription-based services.\nTo facilitate recurring or partial shipment payments, ensure that the original payment is made with a [DSRP (Digital Secure Remote Payment)](https://developer.mastercard.com/mastercard-checkout-solutions/tutorial/integrate_apis/step8/) cryptogram. The subsequent recurring or merchant-initiated transaction may be sent without the DSRP cryptogram.\n| Recurring/Partial Shipment Payment Series | DSRP Cryptogram | E-commerce Security Level Indicator (SLI) Value |",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Merchant-Initiated Transaction",
+    "chunk_index": 21,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_making-payments_chunk_022",
+  "text": "| Recurring/Partial Shipment Payment Series | DSRP Cryptogram | E-commerce Security Level Indicator (SLI) Value |\n|---|---|---|\n| Original Payment / First Payment of Recurring Series | [Required](https://developer.mastercard.com/mastercard-checkout-solutions/tutorial/integrate_apis_scof/step8/). Retrieved from the Checkout API | 247 |\n| Subsequent Payments | Optional | 247 |",
+  "metadata": {
+    "document_id": "mastercard_making-payments",
+    "source_file": "data/raw/mastercard_making-payments.md",
+    "source_type": "markdown",
+    "title": "Make Payments",
+    "section": "Merchant-Initiated Transaction",
+    "chunk_index": 22,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_001",
+  "text": "# Manage Tokens\nManage the tokens generated in the following different scenarios:\n| Scenario | Details |\n|---|---|\n| [Receive Token Updates](#receive-token-updates) | Receive and respond to the notifications when the status of the token changes to Cancelled, Suspended or Active. |\n| [Delete a Token](#delete-a-token) | Delete the token associated with the PAN (Primary Account Number) by calling Delete Card API when consumer deletes a card. |\n| [Get Transaction List for a Token](#get-transaction-list-for-a-token) | Retrieve recent transactions for the specified card identifier using an API. |\n## Receive Token Updates\n---",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Manage Tokens",
+    "chunk_index": 1,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_002",
+  "text": "## Receive Token Updates\n---\n**Lifecycle management events** are events that can take place throughout the card's lifecycle, such as an expiring PAN, or when a card is lost, stolen or compromised by an imposter. When such events occur, Issuers may update the card.\n**Events that trigger Issuer account updates**\nAn Issuer may initiate an account update within the account range or across another account range due to:\n- PAN replacement within the same account range\n- PAN replacement in a different account range",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Receive Token Updates",
+    "chunk_index": 2,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_003",
+  "text": "- PAN replacement within the same account range\n- PAN replacement in a different account range\n- Routine Issuer maintenance, such as moving from a 6 to 8-digit BIN (Bank Identification Number), which may result in the token number being updated (even if underlying PAN does not change)\n- Token expiry extension\nAs these events can affect the token, the Integrator must keep tokens updated by receiving and responding to Card Notifications sent by Mastercard. Mastercard can deliver outbound notifications to customers in either fully encrypted or unencrypted formats (If you are seeking fully encrypted Card Notifications, speak to your account manager to initiate this request).",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Receive Token Updates",
+    "chunk_index": 3,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_004",
+  "text": "As these events can affect the token, the Integrator must keep tokens updated by receiving and responding to Card Notifications sent by Mastercard. Mastercard can deliver outbound notifications to customers in either fully encrypted or unencrypted formats (If you are seeking fully encrypted Card Notifications, speak to your account manager to initiate this request).\nTo keep tokens updated, build an endpoint capable of receiving token lifecycle updates from the request URI associated with [Card Notification](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#notifications).",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Receive Token Updates",
+    "chunk_index": 4,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_005",
+  "text": "To keep tokens updated, build an endpoint capable of receiving token lifecycle updates from the request URI associated with [Card Notification](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#notifications).\n**Note**: Failure to listen and respond to timely notifications may result in outdated tokens. If these outdated tokens are used in payment authorization, it may impact approval rates.\nSupport the following updates and take the necessary action for each status:\n| Token Status | Description | Action required | Authorization |\n|---|---|---|---|",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Receive Token Updates",
+    "chunk_index": 5,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_006",
+  "text": "| Token Status | Description | Action required | Authorization |\n|---|---|---|---|\n| **SUSPENDED** | Token is suspended and unable to transact. | Show grayed card without `panLastFour` on the UI. Update the stored token's status to SUSPENDED. | Token cannot be used (nor should be attempted) for payment authorization. |",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Receive Token Updates",
+    "chunk_index": 6,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_007",
+  "text": "| **SUSPENDED** | Token is suspended and unable to transact. | Show grayed card without `panLastFour` on the UI. Update the stored token's status to SUSPENDED. | Token cannot be used (nor should be attempted) for payment authorization. |\n| **ACTIVE** | Token has been unsuspended and is active to use for transactions. | Show Card with `panLastFour` on the UI. Update the stored token's status to ACTIVE and save the token details in the [maskedCard](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/sdk-reference/common-objects/#masked-card) object. | Token can be used for payment authorization. |",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Receive Token Updates",
+    "chunk_index": 7,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_008",
+  "text": "| **ACTIVE** | Token has been unsuspended and is active to use for transactions. | Show Card with `panLastFour` on the UI. Update the stored token's status to ACTIVE and save the token details in the [maskedCard](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/sdk-reference/common-objects/#masked-card) object. | Token can be used for payment authorization. |\n| **CANCELLED** | Token has been permanently cancelled. | Do not show the card on the UI. Delete the card from your database. Update the stored token's status to CANCELLED, and archive all information related to this token. | Token cannot be used (nor should be attempted) for payment authorization. |",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Receive Token Updates",
+    "chunk_index": 8,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_009",
+  "text": "| **CANCELLED** | Token has been permanently cancelled. | Do not show the card on the UI. Delete the card from your database. Update the stored token's status to CANCELLED, and archive all information related to this token. | Token cannot be used (nor should be attempted) for payment authorization. |\nWhenever Mastercard sends a card notification, it means that the underlying PAN, token, and/or digital data have changed. The `reasonCode` provided in the notification is directional, and can guide the Integrator to take the required action.\n### Reason Code Updates\n---\n| Reason Code | Description | Action required from Integrator |\n|---|---|---|",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Receive Token Updates",
+    "chunk_index": 9,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_010",
+  "text": "| **TOKEN_REFRESH** | The token and/or token expiry may have changed. | When you receive a TOKEN_REFRESH notification, use your payload encryption keys stored on Mastercard Connect to decrypt the `paymentData` object and update the stored token record.",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Reason Code Updates",
+    "chunk_index": 10,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_011",
+  "text": "Use the decrypted DPAN and expiry values to refresh the corresponding [maskedCard](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/sdk-reference/common-objects/#masked-card) details—this includes updating PAN last four, PAN expiry, token last four, and token expiry.<br><br>If both token number and expiry change, call the [Checkout API](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#checkout) (**Checkout POST /transaction/credentials**) to obtain a new cryptogram before the next transaction.",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Reason Code Updates",
+    "chunk_index": 11,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_012",
+  "text": "If only expiry changes, calling the Checkout API is optional.<br><br>For TOKEN_REFRESH, you will receive both `maskedCard` and encrypted `paymentData` (containing DPAN and DPAN expiry). For events other than TOKEN_REFRESH, you will only receive `maskedCard`. |",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Reason Code Updates",
+    "chunk_index": 12,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_013",
+  "text": "| **Other reason codes** | Any reason code other than TOKEN_REFRESH | Update the [maskedCard](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/sdk-reference/common-objects/#masked-card) object for the associated token with the new status and other parameters that may have changed. |",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Reason Code Updates",
+    "chunk_index": 13,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_014",
+  "text": "| **Other reason codes** | Any reason code other than TOKEN_REFRESH | Update the [maskedCard](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/sdk-reference/common-objects/#masked-card) object for the associated token with the new status and other parameters that may have changed. |\n**Warning**: Failure to fetch the new token and other token related information after receiving a **TOKEN_REFRESH** notification may cause future transactions to fail. It is important to call the [Checkout API](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#checkout) to retrieve the latest token information before attempting to perform another transaction.",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Reason Code Updates",
+    "chunk_index": 14,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_015",
+  "text": "**Warning**: Failure to fetch the new token and other token related information after receiving a **TOKEN_REFRESH** notification may cause future transactions to fail. It is important to call the [Checkout API](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#checkout) to retrieve the latest token information before attempting to perform another transaction.\nIn the case of a Merchant Initiated Transaction (MIT), if the token number has changed, you should restart the series with Security Level Indicator (SLI) value to 247 and establish domain control with a Digital Secure Remote Payment (DSRP) cryptogram.",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Reason Code Updates",
+    "chunk_index": 15,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_016",
+  "text": "In the case of a Merchant Initiated Transaction (MIT), if the token number has changed, you should restart the series with Security Level Indicator (SLI) value to 247 and establish domain control with a Digital Secure Remote Payment (DSRP) cryptogram.\n**Example of a successful token update scenario**\n*(Sequence diagram: Issuer sends a PAN update to Mastercard Checkout Solutions, which updates the token mapping and notifies the Integrator; the Integrator responds HTTPS 200 (OK) and updates its card/token info; if the token number changed, the Integrator calls the Checkout API to fetch a new cryptogram.)*\nSteps in detail:\n1. **Issuer sends a PAN update.**",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Reason Code Updates",
+    "chunk_index": 16,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_017",
+  "text": "Steps in detail:\n1. **Issuer sends a PAN update.**\nIssuer sends a PAN update to Mastercard Checkout Solutions, who updates the token mapping.\n2. **Mastercard sends a Card Notification to the Integrator.**\nIntegrator receives the [Card Notification](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#notifications) and sends an acknowledgement response to Mastercard Checkout Solutions.\n3. **Integrator updates the card/token info.**",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Reason Code Updates",
+    "chunk_index": 17,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_018",
+  "text": "3. **Integrator updates the card/token info.**\n- **Update token details using `paymentData` (for TOKEN_REFRESH only):** When the notification reason is TOKEN_REFRESH, use your payload encryption keys stored on Mastercard Connect to decrypt the `paymentData` object and update the stored token record. Use the decrypted DPAN and expiry values to refresh the token details—this includes token number (`paymentToken`), token expiry (`tokenExpirationMonth`, `tokenExpirationYear`), and any other changed parameters.",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Reason Code Updates",
+    "chunk_index": 18,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_019",
+  "text": "- **Update token details using `paymentData` (for TOKEN_REFRESH only):** When the notification reason is TOKEN_REFRESH, use your payload encryption keys stored on Mastercard Connect to decrypt the `paymentData` object and update the stored token record. Use the decrypted DPAN and expiry values to refresh the token details—this includes token number (`paymentToken`), token expiry (`tokenExpirationMonth`, `tokenExpirationYear`), and any other changed parameters.\n- **Update `maskedCard` details:** Update the corresponding [maskedCard](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/sdk-reference/common-objects/#masked-card) object using the new DPAN last four, PAN expiry, token last four, token expiry, and any other updated fields.",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Reason Code Updates",
+    "chunk_index": 19,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_020",
+  "text": "- **Update `maskedCard` details:** Update the corresponding [maskedCard](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/sdk-reference/common-objects/#masked-card) object using the new DPAN last four, PAN expiry, token last four, token expiry, and any other updated fields.\n- For TOKEN_REFRESH, both `maskedCard` and encrypted `paymentData` are provided.\n- For all other notification reasons, only `maskedCard` is provided and should be updated accordingly.\n- **Request a new cryptogram when needed:** If the `reasonCode` is TOKEN_REFRESH **and** both the token number and token expiry have changed:\n1. Delete the old cryptogram.",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Reason Code Updates",
+    "chunk_index": 20,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_021",
+  "text": "1. Delete the old cryptogram.\n2. Call the [Checkout API](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#checkout) (Checkout POST /transaction/credentials) to obtain a new cryptogram (`dynamicData`) before the next transaction. If **only the token expiry changed**, calling the Checkout API is optional.\nFor more information about retry policy if a card notification request fails, see [Retry Policy for Notifications](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/code-and-formats/#retry-policy-for-notifications).\n## Delete a Token\n---",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Reason Code Updates",
+    "chunk_index": 21,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_022",
+  "text": "## Delete a Token\n---\nCall the [Delete Card API](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#card) for the deleted token (`srcDigitalCardId`) anytime a token is removed from your database under the following scenarios:\n- Cardholder deletes a card from their profile or by contacting a call center.\n- Cardholder deletes a card during the transaction.\n- Service Provider off-boards or removes a Merchant account and the associated tokens.\n**Note**:",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Delete a Token",
+    "chunk_index": 22,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_023",
+  "text": "- Cardholder deletes a card during the transaction.\n- Service Provider off-boards or removes a Merchant account and the associated tokens.\n**Note**:\n- Ensure to evaluate all channels in which a card is removed – for instance, through profile management, during a transaction, a call center, and/or when a Service Provider removes a merchant account. The Delete API must be called for all such touch-points (or any other incidents not listed here), to inform Mastercard that the token was deleted.\n- If the Delete API is not called to delete a token from your database, the token will remain active and available to transact in Mastercard's system.\n**Example of a successful deleted card scenario**",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Delete a Token",
+    "chunk_index": 23,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_024",
+  "text": "**Example of a successful deleted card scenario**\n*(Sequence diagram: Cardholder deletes a saved card on file; the Integrator calls Delete Token; Mastercard Checkout Solutions sends a Tokenization Event Notification (deactivate) to the Issuer, which responds; Mastercard deactivates the token mapping and confirms Delete OK to the Integrator; the saved card is removed for the Cardholder.)*\nSteps in detail:\n1. **Cardholder deletes a saved card stored on file.**\n1. Integrator calls the [Delete Card API](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#card) request containing the `srcdigitalcardId` for the card the consumer has chosen to delete.",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Delete a Token",
+    "chunk_index": 24,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_025",
+  "text": "1. Integrator calls the [Delete Card API](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#card) request containing the `srcdigitalcardId` for the card the consumer has chosen to delete.\n2. Mastercard Checkout Services sends the Issuer a Tokenization Event Notification request to deactivate the card.\n3. Issuer sends deactivate response to Mastercard Checkout Services.\n2. **Mastercard deactivates token mapping.**\nMastercard Checkout Services deactivates token mapping and responds back to Integrator to delete card.\n3. **Integrator updates card status.**",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Delete a Token",
+    "chunk_index": 25,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_026",
+  "text": "Mastercard Checkout Services deactivates token mapping and responds back to Integrator to delete card.\n3. **Integrator updates card status.**\n1. If the request is successful, Integrator archives the token-related information based on the internal policies and update the token status stored in system as CANCELLED.\n2. Integrator updates the cardholder that the saved card is removed.\n**Tip**: Mastercard recommends that you delete the token, token information and cryptograms related to the deleted card. Based on your own internal policies and any regulatory requirements, you can delete all archived information about this token when a certain amount of time has passed, such as two years.",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Delete a Token",
+    "chunk_index": 26,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_027",
+  "text": "**Tip**: Mastercard recommends that you delete the token, token information and cryptograms related to the deleted card. Based on your own internal policies and any regulatory requirements, you can delete all archived information about this token when a certain amount of time has passed, such as two years.\n## Get Transaction List for a Token\n---\nTo retrieve recent transactions for the specified card identifier, use the [Get transactions by Card Id API](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#card).\nIf Issuer of the card does not support the Transaction Detail Service, the above request will return an error.",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Get Transaction List for a Token",
+    "chunk_index": 27,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_managing_tokens_chunk_028",
+  "text": "If Issuer of the card does not support the Transaction Detail Service, the above request will return an error.\n**Note**: This scenario is valid for Commerce Platform program type only.",
+  "metadata": {
+    "document_id": "mastercard_managing_tokens",
+    "source_file": "data/raw/mastercard_managing_tokens.md",
+    "source_type": "markdown",
+    "title": "Manage Tokens",
+    "section": "Get Transaction List for a Token",
+    "chunk_index": 28,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
+  }
+}
+{
+  "chunk_id": "mastercard_register_entities_chunk_001",
+  "text": "# Register Entities to Create Tokens\nBefore registering your entities, visit [Mastercard Connect](https://www.mastercardconnect.com/-/sign-in) to onboard, create a project, and get access to Secure Card on File APIs. For further details, view the [Integrate with Secure Card on File](https://developer.mastercard.com/mastercard-checkout-solutions/tutorial/integrate_apis_scof/) tutorial.\nConsumers save their card with a business (or a consumer-facing entity) and tokens are created for that card and entity combination.\nEach consumer-facing entity must be registered with Secure Card on File by providing the entity name in the `programName` field.\n## Program Name\n---",
+  "metadata": {
+    "document_id": "mastercard_register_entities",
+    "source_file": "data/raw/mastercard_register_entities.md",
+    "source_type": "markdown",
+    "title": "Register Entities to Create Tokens",
+    "section": "Register Entities to Create Tokens",
+    "chunk_index": 1,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/"
+  }
+}
+{
+  "chunk_id": "mastercard_register_entities_chunk_002",
+  "text": "Each consumer-facing entity must be registered with Secure Card on File by providing the entity name in the `programName` field.\n## Program Name\n---\nThe `programName` is shared with the Issuer in the tokenization request. To optimize tokenization approval rates, ensure that the program name is clear, descriptive, and represents the business the cardholder recognizes, avoiding numeric or special characters unless they are part of the name.\nIf a parent brand owns multiple entities (that is, websites/applications/products), consider the cardholder's experience while storing their card and registering:",
+  "metadata": {
+    "document_id": "mastercard_register_entities",
+    "source_file": "data/raw/mastercard_register_entities.md",
+    "source_type": "markdown",
+    "title": "Register Entities to Create Tokens",
+    "section": "Program Name",
+    "chunk_index": 2,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/"
+  }
+}
+{
+  "chunk_id": "mastercard_register_entities_chunk_003",
+  "text": "If a parent brand owns multiple entities (that is, websites/applications/products), consider the cardholder's experience while storing their card and registering:\n- Question: If the cardholder saves their card with one business, would they expect it to appear in another business? Does the cardholder have the same profile, username, and password across different businesses?\n- If yes, consider registering a parent entity under one `programName`\n- If no, consider registering entities separately under different program names.\n## ServiceId Creation\n---",
+  "metadata": {
+    "document_id": "mastercard_register_entities",
+    "source_file": "data/raw/mastercard_register_entities.md",
+    "source_type": "markdown",
+    "title": "Register Entities to Create Tokens",
+    "section": "Program Name",
+    "chunk_index": 3,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/"
+  }
+}
+{
+  "chunk_id": "mastercard_register_entities_chunk_004",
+  "text": "- If no, consider registering entities separately under different program names.\n## ServiceId Creation\n---\nUsing the `programName`, Mastercard creates a `serviceId`, which is a unique identifier for that entity. The Integrator uses this `serviceId` to create tokens for that entity.\nProgram Types are Mastercard-defined business categories assigned to you during onboarding. Your Program Type determines how your `serviceId` and `srcClientId` are assigned:\n| Program Type | Who Integrates (`src-Client-Id` assigned to) | Who has relationship with Mastercard | Who has relationship with Cardholder | `serviceId` assigned to |\n|---|---|---|---|---|",
+  "metadata": {
+    "document_id": "mastercard_register_entities",
+    "source_file": "data/raw/mastercard_register_entities.md",
+    "source_type": "markdown",
+    "title": "Register Entities to Create Tokens",
+    "section": "ServiceId Creation",
+    "chunk_index": 4,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/"
+  }
+}
+{
+  "chunk_id": "mastercard_register_entities_chunk_005",
+  "text": "|---|---|---|---|---|\n| **Merchant Direct** | Merchant | Merchant | Merchant | Merchant / Consumer-facing entities |\n| **Commerce Platform Direct** | Commerce Platform | Commerce Platform | Commerce Platform | Commerce Platform |\n| **On-Behalf-Of Merchant** | Service Provider | Service Provider | Merchant | Each merchant / Consumer-facing entities under PSP |\n| **On-Behalf-Of Commerce Platform** | Service Provider | Commerce Platform | Commerce Platform | Commerce Platform (supported through Digital Activity Service Provider model) |\n| **On-Behalf-Of Sub-Merchant** | Payment Facilitator | Payment Facilitator | Sponsored Merchant | Each group of sponsored merchants |",
+  "metadata": {
+    "document_id": "mastercard_register_entities",
+    "source_file": "data/raw/mastercard_register_entities.md",
+    "source_type": "markdown",
+    "title": "Register Entities to Create Tokens",
+    "section": "ServiceId Creation",
+    "chunk_index": 5,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/"
+  }
+}
+{
+  "chunk_id": "mastercard_register_entities_chunk_006",
+  "text": "| **On-Behalf-Of Sub-Merchant** | Payment Facilitator | Payment Facilitator | Sponsored Merchant | Each group of sponsored merchants |\n**Note**: Payment Facilitators can group their sponsored merchants under common attributes and each group is assigned a `serviceId`. The token, provisioned under the serviceId, can be shared provided that adequate PAN checks are in-place. Up to 5 shared serviceIds can be created.\n**The Digital Activity Service Provider model**",
+  "metadata": {
+    "document_id": "mastercard_register_entities",
+    "source_file": "data/raw/mastercard_register_entities.md",
+    "source_type": "markdown",
+    "title": "Register Entities to Create Tokens",
+    "section": "ServiceId Creation",
+    "chunk_index": 6,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/"
+  }
+}
+{
+  "chunk_id": "mastercard_register_entities_chunk_007",
+  "text": "**The Digital Activity Service Provider model**\nSecure Card on File is also available to Digital Activity Customers or Service Providers, who may want to employ a third party (that is, Technical Enabler) for their tokenization activities. To do so, the Technical Enabler must be registered as a \"Digital Activity Service Provider.\"\nIf you are a Technical Enabler, you and your customer will have a relationship with Mastercard and the `serviceId` will be assigned based your customer's Program Type.\n**Note**: The Technical Enabler operates on behalf of and at the direction of their customer, and their customer is responsible for the acts and omissions of the Service Provider.",
+  "metadata": {
+    "document_id": "mastercard_register_entities",
+    "source_file": "data/raw/mastercard_register_entities.md",
+    "source_type": "markdown",
+    "title": "Register Entities to Create Tokens",
+    "section": "ServiceId Creation",
+    "chunk_index": 7,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/"
+  }
+}
+{
+  "chunk_id": "mastercard_register_entities_chunk_008",
+  "text": "**Note**: The Technical Enabler operates on behalf of and at the direction of their customer, and their customer is responsible for the acts and omissions of the Service Provider.\nPlease reach out to your Mastercard representative for more details on how this model suits your requirements.\n## Using Merchant Registration APIs to Register your Entities\n---\nWhen registering an entity, submit a **POST** request to the [Merchant Registration API](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#registration) with the `programName`.",
+  "metadata": {
+    "document_id": "mastercard_register_entities",
+    "source_file": "data/raw/mastercard_register_entities.md",
+    "source_type": "markdown",
+    "title": "Register Entities to Create Tokens",
+    "section": "ServiceId Creation",
+    "chunk_index": 8,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/"
+  }
+}
+{
+  "chunk_id": "mastercard_register_entities_chunk_009",
+  "text": "When registering an entity, submit a **POST** request to the [Merchant Registration API](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#registration) with the `programName`.\nPayment Facilitators should register each of their sponsored merchants as separate Digital Payment Applications (`srcDpaId`) underneath a `programName`.\nRetrieve the `serviceId` for that entity by making a **GET** request to the Merchant Registration API using the `batchId` returned in the previous request.",
+  "metadata": {
+    "document_id": "mastercard_register_entities",
+    "source_file": "data/raw/mastercard_register_entities.md",
+    "source_type": "markdown",
+    "title": "Register Entities to Create Tokens",
+    "section": "Using Merchant Registration APIs to Register your Entities",
+    "chunk_index": 9,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/"
+  }
+}
+{
+  "chunk_id": "mastercard_register_entities_chunk_010",
+  "text": "Retrieve the `serviceId` for that entity by making a **GET** request to the Merchant Registration API using the `batchId` returned in the previous request.\nAlternatively, you can retrieve the `serviceId` by receiving [Merchant status notifications](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#notifications).",
+  "metadata": {
+    "document_id": "mastercard_register_entities",
+    "source_file": "data/raw/mastercard_register_entities.md",
+    "source_type": "markdown",
+    "title": "Register Entities to Create Tokens",
+    "section": "Using Merchant Registration APIs to Register your Entities",
+    "chunk_index": 10,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-of-existing-card_chunk_001",
+  "text": "# Tokenization of an Existing Card\nTokenize the PANs of already-existing cards stored on your database to ensure that these tokens are used instead of PANs during future checkouts by cardholders.\n**Note**: Only one PAN can be tokenized per API request.\nWhen submitting multiple token requests to Mastercard Checkout Solutions, ensure that:\n- The speed of tokenization does not exceed the TPS (transaction per second) limit provided by Mastercard.\n- You must tokenize PANs by randomizing them by account range (that is, do not consecutively tokenize cards in the same account range). Doing so maximizes tokenization performance by ensuring tokenization requests are balanced across Issuers.",
+  "metadata": {
+    "document_id": "mastercard_tokenization-of-existing-card",
+    "source_file": "data/raw/mastercard_tokenization-of-existing-card.md",
+    "source_type": "markdown",
+    "title": "Tokenization of an Existing Card",
+    "section": "Tokenization of an Existing Card",
+    "chunk_index": 1,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-of-existing-card/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-of-existing-card_chunk_002",
+  "text": "- You must tokenize PANs by randomizing them by account range (that is, do not consecutively tokenize cards in the same account range). Doing so maximizes tokenization performance by ensuring tokenization requests are balanced across Issuers.\n*(Sequence diagram: Integrator processes existing PANs on file by calling Enroll Card (PAN, Expiry Date). Mastercard sends a Tokenization Authorization Request to the Issuer, which responds Approved. Mastercard provisions/creates the token and returns a Card Enrolment Response (CardID, Status: Active) to the Integrator, followed by a Tokenization Complete Notification. The Integrator stores the Secure Card on File token.)*",
+  "metadata": {
+    "document_id": "mastercard_tokenization-of-existing-card",
+    "source_file": "data/raw/mastercard_tokenization-of-existing-card.md",
+    "source_type": "markdown",
+    "title": "Tokenization of an Existing Card",
+    "section": "Tokenization of an Existing Card",
+    "chunk_index": 2,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-of-existing-card/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-of-existing-card_chunk_003",
+  "text": "*(Sequence diagram: Integrator processes existing PANs on file by calling Enroll Card (PAN, Expiry Date). Mastercard sends a Tokenization Authorization Request to the Issuer, which responds Approved. Mastercard provisions/creates the token and returns a Card Enrolment Response (CardID, Status: Active) to the Integrator, followed by a Tokenization Complete Notification. The Integrator stores the Secure Card on File token.)*\nDetailed steps are explained below:\n**Integrator initiates tokenization request**",
+  "metadata": {
+    "document_id": "mastercard_tokenization-of-existing-card",
+    "source_file": "data/raw/mastercard_tokenization-of-existing-card.md",
+    "source_type": "markdown",
+    "title": "Tokenization of an Existing Card",
+    "section": "Tokenization of an Existing Card",
+    "chunk_index": 3,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-of-existing-card/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-of-existing-card_chunk_004",
+  "text": "Detailed steps are explained below:\n**Integrator initiates tokenization request**\n1. Integrator sends an [Enroll Card](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#card) request with the encrypted PAN details. Use the `srcCorrelationId` to keep track of each unique request.\n**Note**: Mastercard recommends that you also populate `cardSource` (with the string `MERCHANT` or `WALLET`) and include additional information in the `decisioningData` object to support the issuer's decision on tokenization.\n**Tip**: To maximize tokenization performance:",
+  "metadata": {
+    "document_id": "mastercard_tokenization-of-existing-card",
+    "source_file": "data/raw/mastercard_tokenization-of-existing-card.md",
+    "source_type": "markdown",
+    "title": "Tokenization of an Existing Card",
+    "section": "Tokenization of an Existing Card",
+    "chunk_index": 4,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-of-existing-card/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-of-existing-card_chunk_005",
+  "text": "**Tip**: To maximize tokenization performance:\n- Ensure PAN is still active by calling [Mastercard ABU account inquiry](https://developer.mastercard.com/automatic-billing-updater/documentation/api-reference/#rest-api) API before tokenization.\n- Work with your Mastercard representative to ensure that your existing card repository has token-eligible cards, which have BIN (Bank Identification Number) ranges enabled for tokenization by Issuers.\n**Mastercard sends card to Issuer for tokenization decisioning**\n2. Mastercard contacts the issuer to check eligibility for tokenization via Tokenize Authorization Request.\n3. The Issuer responds with an approved or declined tokenization decision.",
+  "metadata": {
+    "document_id": "mastercard_tokenization-of-existing-card",
+    "source_file": "data/raw/mastercard_tokenization-of-existing-card.md",
+    "source_type": "markdown",
+    "title": "Tokenization of an Existing Card",
+    "section": "Tokenization of an Existing Card",
+    "chunk_index": 5,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-of-existing-card/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-of-existing-card_chunk_006",
+  "text": "3. The Issuer responds with an approved or declined tokenization decision.\n4. Mastercard Checkout Solutions creates a unique token for the PAN.\n**Integrator receives tokenization results**\n5. On successful tokenization and token provisioning, you will receive the card enrollment response with the `srcDigitalCardId`.\n6. Associate the `srcDigitalCardId` to the cardholder's profile.\n## Understanding Tokenization Results\n---\n**Successful Provisioning**\n| Result | Response and Details | Action for Integrator |\n|---|---|---|\n| 200 | Successful | No additional action is needed. |",
+  "metadata": {
+    "document_id": "mastercard_tokenization-of-existing-card",
+    "source_file": "data/raw/mastercard_tokenization-of-existing-card.md",
+    "source_type": "markdown",
+    "title": "Tokenization of an Existing Card",
+    "section": "Tokenization of an Existing Card",
+    "chunk_index": 6,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-of-existing-card/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-of-existing-card_chunk_007",
+  "text": "| Result | Response and Details | Action for Integrator |\n|---|---|---|\n| 200 | Successful | No additional action is needed. |\n| 200 with Successful but *requires additional verification* | You will receive a `200` response code. This is indicated with populating the `pendingEvents` object with the pending cardholder verification type, for example — `PENDING_SCA`, `PENDING_AVS` or `PENDING_CONSUMER_IDV`. In this instance, the token is provisioned in an active state, and can be treated as equivalent to an approved tokenization request | No additional action needed. Any further action to perform cardholder verification is optional. |\n**Unsuccessful Provisioning**",
+  "metadata": {
+    "document_id": "mastercard_tokenization-of-existing-card",
+    "source_file": "data/raw/mastercard_tokenization-of-existing-card.md",
+    "source_type": "markdown",
+    "title": "Tokenization of an Existing Card",
+    "section": "Understanding Tokenization Results",
+    "chunk_index": 7,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-of-existing-card/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-of-existing-card_chunk_008",
+  "text": "**Unsuccessful Provisioning**\n| Result | Response and Details | Action for Integrator |\n|---|---|---|\n| 400 | Error with `ISSUER_DECLINE`. The PAN was not approved by the issuer for tokenization. Do not retry tokenization. | If the CVC2 was provided, prompt the cardholder to provide the correct CVC2 value, and do not retry tokenization without sending the CVC2. |\n| 400 | Error with `TOKENIZATION_INELIGIBLE` or `PAN_INELIGIBLE`. The PAN will not be tokenized if it is in an account range that has not yet been enabled by the issuer via Mastercard Digital Enablement Service (MDES). | The PAN provided is not yet tokenizable. Retry again in 3-6 months. |",
+  "metadata": {
+    "document_id": "mastercard_tokenization-of-existing-card",
+    "source_file": "data/raw/mastercard_tokenization-of-existing-card.md",
+    "source_type": "markdown",
+    "title": "Tokenization of an Existing Card",
+    "section": "Understanding Tokenization Results",
+    "chunk_index": 8,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-of-existing-card/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-adding-card_chunk_001",
+  "text": "# Tokenization While Adding a Card\nCardholder adds a PAN to their merchant website/app and the Integrator creates a token for future transactions.\n*(Sequence diagram: Cardholder submits new card details. Integrator calls Enroll Card (PAN, Expiry Date, CVC2). Mastercard sends a Tokenization Authorisation Request to the Issuer, which responds Approved. Mastercard provisions/creates the token and returns a Card Enrolment Response (CardID, Status: Active, authenticationMethods) to the Integrator, which stores the digital card details against the customer profile.)*\nDetailed steps are explained below:\n**Integrator initiates tokenization request**",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-adding-card",
+    "source_file": "data/raw/mastercard_tokenization-while-adding-card.md",
+    "source_type": "markdown",
+    "title": "Tokenization While Adding a Card",
+    "section": "Tokenization While Adding a Card",
+    "chunk_index": 1,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-adding-card_chunk_002",
+  "text": "Detailed steps are explained below:\n**Integrator initiates tokenization request**\n1. Cardholder enters new card details and saves credentials on a merchant/commerce platform's website.\n2. Integrator encrypts the card object using the public `src-fpan-encryption` key, and Mastercard decrypts the card using the private `src-fpan-encryption` key. Refer to [Public Keys Mastercard Provides](https://developer.mastercard.com/mastercard-checkout-solutions/tutorial/key-management/#public-keys-mastercard-provides) for more details on how to obtain these public keys.",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-adding-card",
+    "source_file": "data/raw/mastercard_tokenization-while-adding-card.md",
+    "source_type": "markdown",
+    "title": "Tokenization While Adding a Card",
+    "section": "Tokenization While Adding a Card",
+    "chunk_index": 2,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-adding-card_chunk_003",
+  "text": "2. Integrator encrypts the card object using the public `src-fpan-encryption` key, and Mastercard decrypts the card using the private `src-fpan-encryption` key. Refer to [Public Keys Mastercard Provides](https://developer.mastercard.com/mastercard-checkout-solutions/tutorial/key-management/#public-keys-mastercard-provides) for more details on how to obtain these public keys.\n3. Integrator sends an [Enroll Card](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#card) request with the encrypted PAN details.\n- Use the `srcCorrelationId` to keep track of each unique request.",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-adding-card",
+    "source_file": "data/raw/mastercard_tokenization-while-adding-card.md",
+    "source_type": "markdown",
+    "title": "Tokenization While Adding a Card",
+    "section": "Tokenization While Adding a Card",
+    "chunk_index": 3,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-adding-card_chunk_004",
+  "text": "- Use the `srcCorrelationId` to keep track of each unique request.\n- If collecting the CVC2, then it must be sent in the Enroll Card request. Ensure to use the correct CVC2 to avoid Issuer rejection of the tokenization request.\n**Note**: Mastercard recommends that you also populate `cardSource` (with the string `CARDHOLDER`) and include additional information in the `decisioningData` object to support the issuer's decision on tokenization.\n**Mastercard sends card to Issuer for tokenization decisioning**\n4. Mastercard contacts the issuer to check eligibility for tokenization via Tokenize Authorization Request.\n5. The Issuer responds with an approved or declined tokenization decision.",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-adding-card",
+    "source_file": "data/raw/mastercard_tokenization-while-adding-card.md",
+    "source_type": "markdown",
+    "title": "Tokenization While Adding a Card",
+    "section": "Tokenization While Adding a Card",
+    "chunk_index": 4,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-adding-card_chunk_005",
+  "text": "5. The Issuer responds with an approved or declined tokenization decision.\n6. Mastercard Checkout Solutions creates a unique token for the PAN.\n**Integrator receives tokenization result and provision the token**\n7. On successful tokenization and token provisioning, you will receive the card enrollment response with the `srcDigitalCardId`.\n8. Associate the `srcDigitalCardId` to the cardholder's profile.",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-adding-card",
+    "source_file": "data/raw/mastercard_tokenization-while-adding-card.md",
+    "source_type": "markdown",
+    "title": "Tokenization While Adding a Card",
+    "section": "Tokenization While Adding a Card",
+    "chunk_index": 5,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-adding-card_chunk_006",
+  "text": "8. Associate the `srcDigitalCardId` to the cardholder's profile.\n**Note**: [Enroll Card](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#card) response also contains available authentication methods. To use them for transaction authentication, refer to the integration steps in the [Integrate with Secure Card on File](https://developer.mastercard.com/mastercard-checkout-solutions/tutorial/integrate_apis_scof/step5/) tutorial and review the [Authentication with Passkey](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/token-authentication/secure-card-on-file/by-mastercard/authentication-with-passkey/create-passkey/) use cases.",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-adding-card",
+    "source_file": "data/raw/mastercard_tokenization-while-adding-card.md",
+    "source_type": "markdown",
+    "title": "Tokenization While Adding a Card",
+    "section": "Tokenization While Adding a Card",
+    "chunk_index": 6,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-adding-card_chunk_007",
+  "text": "**Note**: [Enroll Card](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#card) response also contains available authentication methods. To use them for transaction authentication, refer to the integration steps in the [Integrate with Secure Card on File](https://developer.mastercard.com/mastercard-checkout-solutions/tutorial/integrate_apis_scof/step5/) tutorial and review the [Authentication with Passkey](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/token-authentication/secure-card-on-file/by-mastercard/authentication-with-passkey/create-passkey/) use cases.\n## Understanding Tokenization Results\n---",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-adding-card",
+    "source_file": "data/raw/mastercard_tokenization-while-adding-card.md",
+    "source_type": "markdown",
+    "title": "Tokenization While Adding a Card",
+    "section": "Understanding Tokenization Results",
+    "chunk_index": 7,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-adding-card_chunk_008",
+  "text": "## Understanding Tokenization Results\n---\n**Successful Provisioning**\n| Result | Response and Details | Action for Integrator |\n|---|---|---|\n| 200 | Successful | No additional action is needed. |",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-adding-card",
+    "source_file": "data/raw/mastercard_tokenization-while-adding-card.md",
+    "source_type": "markdown",
+    "title": "Tokenization While Adding a Card",
+    "section": "Understanding Tokenization Results",
+    "chunk_index": 8,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-adding-card_chunk_009",
+  "text": "| Result | Response and Details | Action for Integrator |\n|---|---|---|\n| 200 | Successful | No additional action is needed. |\n| 200 with Successful but *requires additional verification* | You will receive a `200` response code. This is indicated with populating the `pendingEvents` object with the pending cardholder verification type, for example — `PENDING_SCA`, `PENDING_AVS` or `PENDING_CONSUMER_IDV`. In this instance, the token is provisioned in an active state, and can be treated as equivalent to an approved tokenization request | No additional action needed. Any further action to perform cardholder verification is optional. |\n**Unsuccessful Provisioning**",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-adding-card",
+    "source_file": "data/raw/mastercard_tokenization-while-adding-card.md",
+    "source_type": "markdown",
+    "title": "Tokenization While Adding a Card",
+    "section": "Understanding Tokenization Results",
+    "chunk_index": 9,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-adding-card_chunk_010",
+  "text": "**Unsuccessful Provisioning**\n| Result | Response and Details | Action for Integrator |\n|---|---|---|\n| 400 | Error with `ISSUER_DECLINE`. The PAN was not approved by the issuer for tokenization. Do not retry tokenization. | If the CVC2 was provided, prompt the cardholder to provide the correct CVC2 value, and do not retry tokenization without sending the CVC2. |\n| 400 | Error with `TOKENIZATION_INELIGIBLE` or `PAN_INELIGIBLE`. The PAN will not be tokenized if it is in an account range that has not yet been enabled by the issuer via Mastercard Digital Enablement Service (MDES). | The PAN provided is not yet tokenizable. Retry again in 3-6 months. |",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-adding-card",
+    "source_file": "data/raw/mastercard_tokenization-while-adding-card.md",
+    "source_type": "markdown",
+    "title": "Tokenization While Adding a Card",
+    "section": "Understanding Tokenization Results",
+    "chunk_index": 10,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-transacting_chunk_001",
+  "text": "# Tokenization while Transacting\nCardholders can initiate payment with a card that is not yet tokenized. In this case, create a token by enrolling a PAN into Secure Card on File during the transaction, and associate the token with the cardholder's profile for future transactions.",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-transacting",
+    "source_file": "data/raw/mastercard_tokenization-while-transacting.md",
+    "source_type": "markdown",
+    "title": "Tokenization while Transacting",
+    "section": "Tokenization while Transacting",
+    "chunk_index": 1,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-transacting_chunk_002",
+  "text": "Cardholders can initiate payment with a card that is not yet tokenized. In this case, create a token by enrolling a PAN into Secure Card on File during the transaction, and associate the token with the cardholder's profile for future transactions.\n*(Sequence diagram: Cardholder initiates checkout. Integrator calls Enroll Card (PAN, Expiry Date, CVC2). Mastercard sends a Tokenization Authorisation Request to the Issuer, which responds Approved. Mastercard provisions/creates the token and returns a Card Enrollment Response (CardID, Status: Active, authenticationMethods) to the Integrator, which stores the digital card details against the customer profile. The Integrator then calls Checkout (POST /transaction/credentials) and receives a checkout JWS response containing the encryptedPayload.)*",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-transacting",
+    "source_file": "data/raw/mastercard_tokenization-while-transacting.md",
+    "source_type": "markdown",
+    "title": "Tokenization while Transacting",
+    "section": "Tokenization while Transacting",
+    "chunk_index": 2,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-transacting_chunk_003",
+  "text": "*(Sequence diagram: Cardholder initiates checkout. Integrator calls Enroll Card (PAN, Expiry Date, CVC2). Mastercard sends a Tokenization Authorisation Request to the Issuer, which responds Approved. Mastercard provisions/creates the token and returns a Card Enrollment Response (CardID, Status: Active, authenticationMethods) to the Integrator, which stores the digital card details against the customer profile. The Integrator then calls Checkout (POST /transaction/credentials) and receives a checkout JWS response containing the encryptedPayload.)*\nDetailed steps are explained below:\n**Integrator initiates tokenization request**",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-transacting",
+    "source_file": "data/raw/mastercard_tokenization-while-transacting.md",
+    "source_type": "markdown",
+    "title": "Tokenization while Transacting",
+    "section": "Tokenization while Transacting",
+    "chunk_index": 3,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-transacting_chunk_004",
+  "text": "Detailed steps are explained below:\n**Integrator initiates tokenization request**\n1. Cardholder initiates a transaction on an existing card stored on file or by adding a new card on a merchant/commerce platform's website.\n2. Integrator encrypts the card object using the public `src-fpan-encryption` key, and Mastercard decrypts the card using the private `src-fpan-encryption` key. Refer to [Public Keys Mastercard Provides](https://developer.mastercard.com/mastercard-checkout-solutions/tutorial/key-management/#public-keys-mastercard-provides) for more details on how to obtain these public keys.",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-transacting",
+    "source_file": "data/raw/mastercard_tokenization-while-transacting.md",
+    "source_type": "markdown",
+    "title": "Tokenization while Transacting",
+    "section": "Tokenization while Transacting",
+    "chunk_index": 4,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-transacting_chunk_005",
+  "text": "2. Integrator encrypts the card object using the public `src-fpan-encryption` key, and Mastercard decrypts the card using the private `src-fpan-encryption` key. Refer to [Public Keys Mastercard Provides](https://developer.mastercard.com/mastercard-checkout-solutions/tutorial/key-management/#public-keys-mastercard-provides) for more details on how to obtain these public keys.\n3. Integrator sends an [Enroll Card](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#card) request with the encrypted PAN details.\n- Use the `srcCorrelationId` to keep track of each unique request.",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-transacting",
+    "source_file": "data/raw/mastercard_tokenization-while-transacting.md",
+    "source_type": "markdown",
+    "title": "Tokenization while Transacting",
+    "section": "Tokenization while Transacting",
+    "chunk_index": 5,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-transacting_chunk_006",
+  "text": "- Use the `srcCorrelationId` to keep track of each unique request.\n- If collecting the CVC2, then it must be sent in the Enroll Card request. Ensure to use the correct CVC2 to avoid Issuer rejection of the tokenization request.\n**Note**: Mastercard recommends that you also populate `cardSource` (with the string `CARDHOLDER`) and include additional information in the `decisioningData` object to support the issuer's decision on tokenization.\n**Mastercard sends card to Issuer for tokenization decisioning**\n4. Mastercard contacts the issuer to check tokenization eligibility via Tokenize Authorization Request.\n5. The Issuer responds with an approved or declined tokenization decision.",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-transacting",
+    "source_file": "data/raw/mastercard_tokenization-while-transacting.md",
+    "source_type": "markdown",
+    "title": "Tokenization while Transacting",
+    "section": "Tokenization while Transacting",
+    "chunk_index": 6,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-transacting_chunk_007",
+  "text": "5. The Issuer responds with an approved or declined tokenization decision.\n6. Mastercard Checkout Solutions creates a unique token for the Account PAN.\n**Integrator receives tokenization results**\n7. On successful tokenization and token provisioning, you will receive the card enrollment response with the `srcDigitalCardId`.\n8. Associate the `srcDigitalCardId` to the cardholder's profile.",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-transacting",
+    "source_file": "data/raw/mastercard_tokenization-while-transacting.md",
+    "source_type": "markdown",
+    "title": "Tokenization while Transacting",
+    "section": "Tokenization while Transacting",
+    "chunk_index": 7,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-transacting_chunk_008",
+  "text": "8. Associate the `srcDigitalCardId` to the cardholder's profile.\n**Note**: [Enroll Card](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#card) response also contains available authentication methods. To use them for transaction authentication, refer to the integration steps in the [Integrate with Secure Card on File](https://developer.mastercard.com/mastercard-checkout-solutions/tutorial/integrate_apis_scof/step5/) tutorial and review the [Authentication with Passkey](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/token-authentication/secure-card-on-file/by-mastercard/authentication-with-passkey/create-passkey/) use cases.",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-transacting",
+    "source_file": "data/raw/mastercard_tokenization-while-transacting.md",
+    "source_type": "markdown",
+    "title": "Tokenization while Transacting",
+    "section": "Tokenization while Transacting",
+    "chunk_index": 8,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-transacting_chunk_009",
+  "text": "**Note**: [Enroll Card](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#card) response also contains available authentication methods. To use them for transaction authentication, refer to the integration steps in the [Integrate with Secure Card on File](https://developer.mastercard.com/mastercard-checkout-solutions/tutorial/integrate_apis_scof/step5/) tutorial and review the [Authentication with Passkey](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/token-authentication/secure-card-on-file/by-mastercard/authentication-with-passkey/create-passkey/) use cases.\n**Make payments with the token**",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-transacting",
+    "source_file": "data/raw/mastercard_tokenization-while-transacting.md",
+    "source_type": "markdown",
+    "title": "Tokenization while Transacting",
+    "section": "Tokenization while Transacting",
+    "chunk_index": 9,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-transacting_chunk_010",
+  "text": "**Make payments with the token**\n9. Call the [Checkout API](https://developer.mastercard.com/mastercard-checkout-solutions/documentation/api-reference/apis/#checkout) with the `srcDigitalCardId` to fetch the payload.\n10. The response is encoded, digitally signed and wrapped in a JWS structure, which needs to be decoded to extract the `encryptedPayload`. Decrypt the `encryptedPayload` to send payload for authorization for the cardholder to complete the purchase.",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-transacting",
+    "source_file": "data/raw/mastercard_tokenization-while-transacting.md",
+    "source_type": "markdown",
+    "title": "Tokenization while Transacting",
+    "section": "Tokenization while Transacting",
+    "chunk_index": 10,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-transacting_chunk_011",
+  "text": "10. The response is encoded, digitally signed and wrapped in a JWS structure, which needs to be decoded to extract the `encryptedPayload`. Decrypt the `encryptedPayload` to send payload for authorization for the cardholder to complete the purchase.\n**Note**: While making back-to-back API calls (that is, calling Enroll API to create the token, then calling Checkout API to make a payment), ensure to use the same `X-Src-Cx-Flow-Id` returned from the first API call to call the next API call, to avoid site replication errors.\n## Understanding Tokenization Results\n---\n**Successful Provisioning**\n| Result | Response and Details | Action for Integrator |\n|---|---|---|",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-transacting",
+    "source_file": "data/raw/mastercard_tokenization-while-transacting.md",
+    "source_type": "markdown",
+    "title": "Tokenization while Transacting",
+    "section": "Tokenization while Transacting",
+    "chunk_index": 11,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-transacting_chunk_012",
+  "text": "## Understanding Tokenization Results\n---\n**Successful Provisioning**\n| Result | Response and Details | Action for Integrator |\n|---|---|---|\n| 200 | Successful | No additional action is needed. |",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-transacting",
+    "source_file": "data/raw/mastercard_tokenization-while-transacting.md",
+    "source_type": "markdown",
+    "title": "Tokenization while Transacting",
+    "section": "Understanding Tokenization Results",
+    "chunk_index": 12,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-transacting_chunk_013",
+  "text": "| Result | Response and Details | Action for Integrator |\n|---|---|---|\n| 200 | Successful | No additional action is needed. |\n| 200 with Successful but *requires additional verification* | You will receive a `200` response code. This is indicated with populating the `pendingEvents` object with the pending cardholder verification type, for example — `PENDING_SCA`, `PENDING_AVS` or `PENDING_CONSUMER_IDV`. In this instance, the token is provisioned in an active state, and can be treated as equivalent to an approved tokenization request | No additional action needed. Any further action to perform cardholder verification is optional. |\n**Unsuccessful Provisioning**",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-transacting",
+    "source_file": "data/raw/mastercard_tokenization-while-transacting.md",
+    "source_type": "markdown",
+    "title": "Tokenization while Transacting",
+    "section": "Understanding Tokenization Results",
+    "chunk_index": 13,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-transacting_chunk_014",
+  "text": "**Unsuccessful Provisioning**\n| Result | Response and Details | Action for Integrator |\n|---|---|---|\n| 400 | Error with `ISSUER_DECLINE`. The PAN was not approved by the issuer for tokenization. Do not retry tokenization. | If the CVC2 was provided, prompt the cardholder to provide the correct CVC2 value, and do not retry tokenization without sending the CVC2. |\n| 400 | Error with `TOKENIZATION_INELIGIBLE` or `PAN_INELIGIBLE`. The PAN will not be tokenized if it is in an account range that has not yet been enabled by the issuer via Mastercard Digital Enablement Service (MDES). | The PAN provided is not yet tokenizable. Retry again in 3-6 months. |",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-transacting",
+    "source_file": "data/raw/mastercard_tokenization-while-transacting.md",
+    "source_type": "markdown",
+    "title": "Tokenization while Transacting",
+    "section": "Understanding Tokenization Results",
+    "chunk_index": 14,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
+  }
+}
+{
+  "chunk_id": "mastercard_tokenization-while-transacting_chunk_015",
+  "text": "| 400 | Error with `TOKENIZATION_INELIGIBLE` or `PAN_INELIGIBLE`. The PAN will not be tokenized if it is in an account range that has not yet been enabled by the issuer via Mastercard Digital Enablement Service (MDES). | The PAN provided is not yet tokenizable. Retry again in 3-6 months. |\n| Other 400 Errors | Do not retry tokenization with the same request. | Work with your Mastercard representative to understand the potential issue. |\n| 5xx Errors | Indicates a server outage. | Retry immediately or after some time. |",
+  "metadata": {
+    "document_id": "mastercard_tokenization-while-transacting",
+    "source_file": "data/raw/mastercard_tokenization-while-transacting.md",
+    "source_type": "markdown",
+    "title": "Tokenization while Transacting",
+    "section": "Understanding Tokenization Results",
+    "chunk_index": 15,
+    "language": "en",
+    "domain": "payments",
+    "document_type": "api_documentation",
+    "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
+  }
+}
