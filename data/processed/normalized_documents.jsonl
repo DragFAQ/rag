@@ -8,6 +8,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_display",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/displaying-tokenized-pan-details/",
     "retrieved": "2026-07-20"
   }
@@ -22,6 +23,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/",
     "retrieved": "2026-07-20"
   }
@@ -36,6 +38,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/",
     "retrieved": "2026-07-20"
   }
@@ -50,6 +53,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "entity_registration",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/",
     "retrieved": "2026-07-20"
   }
@@ -64,6 +68,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-of-existing-card/",
     "retrieved": "2026-07-20"
   }
@@ -78,6 +83,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/",
     "retrieved": "2026-07-20"
   }
@@ -92,6 +98,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/",
     "retrieved": "2026-07-20"
   }

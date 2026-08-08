@@ -111,8 +111,7 @@ def format_query_entry(index: int, item: dict[str, Any], results: list[dict[str,
 
 
 def main() -> None:
-    from rag_answer import load_retrieval_components
-    from semantic_search import search
+    from semantic_search import load_retrieval_components, search
 
     model, index, chunks = load_retrieval_components()
 
