@@ -160,7 +160,57 @@ Detailed steps are explained below:
 - `section` is derived from the nearest heading only — nested subsections under the same
   H2 aren't distinguished, so retrieval can't tell "Program Name" apart from a deeper
   subsection under it without reading the chunk text itself.
-- No embeddings/indexing step yet — `chunks.jsonl` is the last stage implemented so far.
+
+## Semantic Retrieval
+
+`scripts/build_faiss_index.py` embeds every chunk in `data/processed/chunks.jsonl` with
+`sentence-transformers/all-MiniLM-L6-v2` (384-dim, CPU) and builds a FAISS `IndexFlatIP`
+index over the L2-normalized vectors (inner product on normalized vectors = cosine
+similarity).
+
+Generated in `data/`:
+- `data/processed/embeddings.npy` — normalized embedding matrix, shape `(num_chunks, 384)`
+- `data/index/faiss.index` — FAISS index, one vector per chunk in the same order as
+  `chunks.jsonl`
+
+`scripts/semantic_search.py` embeds a query with the same model and returns the top-k
+chunks by cosine similarity, each with its score, `chunk_id`, and metadata. Its `search()`
+function is written to be imported by later pipelines (e.g. answer generation) rather
+than only run standalone.
+
+This is baseline vector search only — no metadata filtering, hybrid scoring, or
+reranking.
+
+`scripts/generate_retrieval_examples.py` runs 8 test queries (direct-topic,
+rephrased, exact field code, descriptive phrasing, out-of-domain) through
+`search()` and writes `outputs/retrieval_examples.md` — Top-3 per query with
+score/text preview/source, a relevance comment, and a conclusion on where
+retrieval works well vs. poorly.
+
+## Grounded Answer Generation
+
+`scripts/rag_answer.py` adds an LLM answer on top of retrieval:
+
+```text
+question -> retrieve top-k chunks (FAISS) -> prompt with context -> OpenAI chat
+completion -> grounded answer with chunk_id / source citations
+```
+
+The system prompt requires the model to:
+- answer only from the retrieved context, never from general knowledge;
+- say explicitly that it does not have enough information when context is
+  insufficient, instead of guessing;
+- cite the `chunk_id` and source file it used.
+
+Requires `OPENAI_API_KEY` (and optionally `OPENAI_MODEL`, default `gpt-4.1-mini`) —
+copy `.env.example` to `.env` and fill in the key.
+
+`scripts/run_qa_examples.py` runs a fixed set of test questions (clear answer,
+rephrased question, out-of-domain/insufficient context, weak retrieval) through the
+pipeline and writes:
+- `outputs/rag_answers_examples.md` — question, retrieved chunks, answer, source
+- `outputs/prompt_improvements.md` — before/after comparison of a naive prompt vs.
+  the grounded prompt on a few selected questions
 
 ## Directory Layout
 
@@ -168,10 +218,19 @@ Detailed steps are explained below:
 rag/
   data/
     raw/        # Source documents (Markdown with YAML frontmatter)
-    processed/  # Generated: normalized_documents.jsonl, chunks.jsonl
+    processed/  # Generated: normalized_documents.jsonl, chunks.jsonl, embeddings.npy
+    index/      # Generated: faiss.index
     README.md
   scripts/
     prepare_knowledge_base.py  # Normalize raw/ into processed/
+    build_faiss_index.py       # Embed chunks and build the FAISS index
+    semantic_search.py         # Query the FAISS index
+    generate_retrieval_examples.py  # Run test queries and write outputs/retrieval_examples.md
+    rag_answer.py              # Retrieve + prompt + call the LLM for one question
+    run_qa_examples.py         # Run the test question set and write outputs/
+  outputs/      # Generated: retrieval_examples.md, rag_answers_examples.md,
+                #            prompt_improvements.md
+  .env.example  # Copy to .env and fill in OPENAI_API_KEY
   .venv/        # Local Python 3.10 virtual environment (not committed)
   README.md
 ```
@@ -182,6 +241,7 @@ rag/
    ```
    python3.10 -m venv .venv
    source .venv/bin/activate
+   pip install -r requirements.txt
    ```
 2. Add source documents to `data/raw/` (Markdown, with `source` / `title` / `retrieved`
    frontmatter — see existing files for the expected format).
@@ -191,6 +251,27 @@ rag/
    ```
 4. Check the output in `data/processed/normalized_documents.jsonl` and
    `data/processed/chunks.jsonl`.
+5. Build embeddings and the FAISS index:
+   ```
+   python scripts/build_faiss_index.py
+   ```
+6. Try semantic search:
+   ```
+   python scripts/semantic_search.py "How does a device generate a token for a card during checkout?"
+   ```
+7. Generate the retrieval-quality report (no API key needed):
+   ```
+   python scripts/generate_retrieval_examples.py
+   ```
+8. Copy `.env.example` to `.env` and set `OPENAI_API_KEY`.
+9. Ask a grounded question:
+   ```
+   python scripts/rag_answer.py "How is a serviceId created and what is it used for?"
+   ```
+10. Generate the full test-question report:
+    ```
+    python scripts/run_qa_examples.py
+    ```
 
 ## Development Principles
 
