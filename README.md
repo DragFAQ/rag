@@ -317,6 +317,42 @@ pipeline and writes:
 - `outputs/prompt_improvements.md`: before/after comparison of a naive prompt vs.
   the grounded prompt on a few selected questions
 
+## External Tool Integration
+
+`scripts/external_tool.py` adds `get_token_status`, a read tool that returns the *live*
+status of one Card-on-File token (`ACTIVE` / `SUSPENDED` / `DELETED`), masked PAN, expiry,
+and last-updated date from a mock token-vault API. Token status is dynamic, per-token
+state — it cannot be reliably stored in a static knowledge base, so a tool is the correct
+approach here, unlike conceptual questions ("how is a serviceId created?"), which stay
+answered by retrieval.
+
+```text
+question -> retrieve top-k chunks (context) -> model call with tool offered
+         -> [if tool requested] validate args -> execute -> feed result back -> final answer
+         -> [else] answer from retrieved context only
+```
+
+Validation (`external_tool.py`) happens before any lookup: `token_reference` must be
+present, a string, and match `TKN-XXXXXX` (6+ digits); on a malformed or unknown
+reference the tool returns a structured `{"error": ...}` instead of executing anything.
+The model only proposes a tool name and arguments — `scripts/agent_with_tool.py` decides
+whether they're safe to run.
+
+`scripts/agent_with_tool.py` is the orchestration layer: it reuses `search()` from
+`semantic_search.py` for retrieval, offers `get_token_status` to the model via OpenAI
+function calling, executes and validates any requested call, and asks for a final
+grounded answer. Requires `OPENAI_API_KEY`, same as `rag_answer.py`.
+
+```bash
+python scripts/agent_with_tool.py "What is the status of token TKN-100234?"
+python scripts/agent_with_tool.py "How is a serviceId created and what is it used for?"
+```
+
+See `outputs/tool_examples.md` for 5 worked examples (valid lookup, not-found, invalid
+format rejected by validation, a pure-retrieval contrast case, and a hybrid case combining
+the tool with retrieved context) with an explanation of why the tool is preferable to
+retrieval in each case.
+
 ## Directory Layout
 
 ```text
@@ -335,8 +371,11 @@ rag/
     generate_retrieval_comparison.py  # Compare all 4 configurations, write outputs/
     rag_answer.py              # Retrieve + prompt + call the LLM for one question
     run_qa_examples.py         # Run the test question set and write outputs/
+    external_tool.py           # get_token_status tool: input contract + validation
+    agent_with_tool.py         # Orchestration: retrieval + tool-calling + final answer
   outputs/      # Generated: retrieval_examples.md, retrieval_comparison.md,
-                #            rag_answers_examples.md, prompt_improvements.md
+                #            rag_answers_examples.md, prompt_improvements.md,
+                #            tool_examples.md
   .env.example  # Copy to .env and fill in OPENAI_API_KEY
   .venv/        # Local Python 3.10 virtual environment (not committed)
   README.md
