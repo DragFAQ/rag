@@ -1,6 +1,7 @@
 ---
 source: https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/
 title: Register Entities to Create Tokens
+topic: entity_registration
 retrieved: 2026-07-20
 ---
 

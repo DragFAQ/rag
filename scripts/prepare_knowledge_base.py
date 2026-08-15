@@ -11,7 +11,7 @@ Purpose:
 
 This script reads:
     - Markdown files with an optional YAML frontmatter header
-      (source, title, retrieved)
+      (source, title, topic, retrieved)
 
 And produces:
     data/processed/normalized_documents.jsonl
@@ -98,6 +98,7 @@ def read_markdown_file(file_path: Path) -> dict[str, Any]:
             "language": "en",
             "domain": "payments",
             "document_type": "api_documentation",
+            "topic": frontmatter.get("topic"),
             "source_url": frontmatter.get("source"),
             "retrieved": frontmatter.get("retrieved"),
         },
@@ -284,6 +285,7 @@ def chunk_document(document: dict[str, Any]) -> list[dict[str, Any]]:
                     "language": document["metadata"].get("language"),
                     "domain": document["metadata"].get("domain"),
                     "document_type": document["metadata"].get("document_type"),
+                    "topic": document["metadata"].get("topic"),
                     "source_url": document["metadata"].get("source_url"),
                 },
             }
@@ -320,6 +322,7 @@ def main() -> None:
         print(f"Document ID: {doc['document_id']}")
         print(f"Source type: {doc['source_type']}")
         print(f"Title: {doc['title']}")
+        print(f"Topic: {doc['metadata']['topic']}")
         preview = doc["text"][:180].replace("\n", " ")
         print(f"Text preview: {preview}...")
 

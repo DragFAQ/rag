@@ -61,18 +61,23 @@ def search(
     return results
 
 
-def main() -> None:
+def load_retrieval_components() -> tuple[SentenceTransformer, faiss.Index, list[dict[str, Any]]]:
+    """Load the embedding model, FAISS index, and chunk records."""
     if not CHUNKS_PATH.exists() or not INDEX_PATH.exists():
         raise FileNotFoundError(
             "Chunks file or FAISS index not found. "
             "Run scripts/build_faiss_index.py first."
         )
+    model = SentenceTransformer(MODEL_NAME)
+    index = faiss.read_index(str(INDEX_PATH))
+    chunks = load_jsonl_records(CHUNKS_PATH)
+    return model, index, chunks
 
+
+def main() -> None:
     query = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_QUERY
 
-    chunks = load_jsonl_records(CHUNKS_PATH)
-    index = faiss.read_index(str(INDEX_PATH))
-    model = SentenceTransformer(MODEL_NAME)
+    model, index, chunks = load_retrieval_components()
 
     print(f"Query: {query}")
     print(f"Top-k: {TOP_K}")

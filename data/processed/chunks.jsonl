@@ -11,6 +11,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_display",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/displaying-tokenized-pan-details/"
   }
 }
@@ -27,6 +28,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_display",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/displaying-tokenized-pan-details/"
   }
 }
@@ -43,6 +45,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_display",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/displaying-tokenized-pan-details/"
   }
 }
@@ -59,6 +62,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_display",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/displaying-tokenized-pan-details/"
   }
 }
@@ -75,6 +79,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_display",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/displaying-tokenized-pan-details/"
   }
 }
@@ -91,6 +96,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_display",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/displaying-tokenized-pan-details/"
   }
 }
@@ -107,6 +113,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_display",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/displaying-tokenized-pan-details/"
   }
 }
@@ -123,6 +130,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -139,6 +147,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -155,6 +164,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -171,6 +181,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -187,6 +198,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -203,6 +215,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -219,6 +232,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -235,6 +249,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -251,6 +266,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -267,6 +283,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -283,6 +300,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -299,6 +317,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -315,6 +334,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -331,6 +351,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -347,6 +368,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -363,6 +385,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -379,6 +402,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -395,6 +419,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -411,6 +436,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -427,6 +453,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -443,6 +470,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -459,6 +487,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "payments",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/"
   }
 }
@@ -475,6 +504,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -491,6 +521,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -507,6 +538,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -523,6 +555,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -539,6 +572,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -555,6 +589,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -571,6 +606,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -587,6 +623,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -603,6 +640,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -619,6 +657,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -635,6 +674,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -651,6 +691,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -667,6 +708,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -683,6 +725,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -699,6 +742,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -715,6 +759,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -731,6 +776,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -747,6 +793,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -763,6 +810,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -779,6 +827,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -795,6 +844,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -811,6 +861,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -827,6 +878,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -843,6 +895,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -859,6 +912,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -875,6 +929,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -891,6 +946,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -907,6 +963,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_management",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/managing-tokens/"
   }
 }
@@ -923,6 +980,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "entity_registration",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/"
   }
 }
@@ -939,6 +997,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "entity_registration",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/"
   }
 }
@@ -955,6 +1014,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "entity_registration",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/"
   }
 }
@@ -971,6 +1031,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "entity_registration",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/"
   }
 }
@@ -987,6 +1048,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "entity_registration",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/"
   }
 }
@@ -1003,6 +1065,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "entity_registration",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/"
   }
 }
@@ -1019,6 +1082,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "entity_registration",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/"
   }
 }
@@ -1035,6 +1099,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "entity_registration",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/"
   }
 }
@@ -1051,6 +1116,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "entity_registration",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/"
   }
 }
@@ -1067,6 +1133,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "entity_registration",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/register_entities/"
   }
 }
@@ -1083,6 +1150,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-of-existing-card/"
   }
 }
@@ -1099,6 +1167,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-of-existing-card/"
   }
 }
@@ -1115,6 +1184,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-of-existing-card/"
   }
 }
@@ -1131,6 +1201,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-of-existing-card/"
   }
 }
@@ -1147,6 +1218,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-of-existing-card/"
   }
 }
@@ -1163,6 +1235,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-of-existing-card/"
   }
 }
@@ -1179,6 +1252,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-of-existing-card/"
   }
 }
@@ -1195,6 +1269,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-of-existing-card/"
   }
 }
@@ -1211,6 +1286,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/"
   }
 }
@@ -1227,6 +1303,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/"
   }
 }
@@ -1243,6 +1320,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/"
   }
 }
@@ -1259,6 +1337,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/"
   }
 }
@@ -1275,6 +1354,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/"
   }
 }
@@ -1291,6 +1371,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/"
   }
 }
@@ -1307,6 +1388,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/"
   }
 }
@@ -1323,6 +1405,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/"
   }
 }
@@ -1339,6 +1422,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/"
   }
 }
@@ -1355,6 +1439,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/"
   }
 }
@@ -1371,6 +1456,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
   }
 }
@@ -1387,6 +1473,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
   }
 }
@@ -1403,6 +1490,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
   }
 }
@@ -1419,6 +1507,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
   }
 }
@@ -1435,6 +1524,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
   }
 }
@@ -1451,6 +1541,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
   }
 }
@@ -1467,6 +1558,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
   }
 }
@@ -1483,6 +1575,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
   }
 }
@@ -1499,6 +1592,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
   }
 }
@@ -1515,6 +1609,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
   }
 }
@@ -1531,6 +1626,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
   }
 }
@@ -1547,6 +1643,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
   }
 }
@@ -1563,6 +1660,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
   }
 }
@@ -1579,6 +1677,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
   }
 }
@@ -1595,6 +1694,7 @@
     "language": "en",
     "domain": "payments",
     "document_type": "api_documentation",
+    "topic": "token_creation",
     "source_url": "https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-transacting/"
   }
 }

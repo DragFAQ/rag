@@ -1,6 +1,7 @@
 ---
 source: https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/making-payments/
 title: Make Payments
+topic: payments
 retrieved: 2026-07-20
 ---
 

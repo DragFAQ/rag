@@ -1,6 +1,7 @@
 ---
 source: https://developer.mastercard.com/mastercard-checkout-solutions/documentation/use-cases/card-on-file/create-tokens/tokenization-while-adding-card/
 title: Tokenization While Adding a Card
+topic: token_creation
 retrieved: 2026-07-20
 ---
 

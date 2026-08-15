@@ -23,8 +23,7 @@ from dotenv import load_dotenv
 from openai import OpenAI
 from sentence_transformers import SentenceTransformer
 
-from build_faiss_index import load_jsonl_records
-from semantic_search import CHUNKS_PATH, INDEX_PATH, MODEL_NAME
+from semantic_search import load_retrieval_components
 from semantic_search import search as retrieve_chunks
 
 DEFAULT_LLM_MODEL = "gpt-4.1-mini"
@@ -61,19 +60,6 @@ def require_api_key() -> None:
             "OPENAI_API_KEY is not set. "
             "Create a .env file (see .env.example) or export OPENAI_API_KEY."
         )
-
-
-def load_retrieval_components() -> tuple[SentenceTransformer, faiss.Index, list[dict[str, Any]]]:
-    """Load the embedding model, FAISS index, and chunk records."""
-    if not CHUNKS_PATH.exists() or not INDEX_PATH.exists():
-        raise FileNotFoundError(
-            "Chunks file or FAISS index not found. "
-            "Run scripts/build_faiss_index.py first."
-        )
-    model = SentenceTransformer(MODEL_NAME)
-    index = faiss.read_index(str(INDEX_PATH))
-    chunks = load_jsonl_records(CHUNKS_PATH)
-    return model, index, chunks
 
 
 def format_context(retrieved: list[dict[str, Any]]) -> str:
