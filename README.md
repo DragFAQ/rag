@@ -291,6 +291,9 @@ worded to pull toward a topic that does not hold the answer.
 
 ## Grounded Answer Generation
 
+See [`PROMPT_TEMPLATE.md`](PROMPT_TEMPLATE.md) for the full prompt template (system
+prompt + user message) used below, and the weak baseline it's compared against.
+
 `scripts/rag_answer.py` adds an LLM answer on top of retrieval:
 
 ```text
