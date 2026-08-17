@@ -353,6 +353,60 @@ format rejected by validation, a pure-retrieval contrast case, and a hybrid case
 the tool with retrieved context) with an explanation of why the tool is preferable to
 retrieval in each case.
 
+## Custom Agent Workflow
+
+**Use case**: same chatbot as the rest of this project — a Card-on-File integration
+assistant — but split into two things a developer actually asks for on a support
+channel: "how does X work" (documentation question) and "what's the current state of
+token Y" (live lookup, not something a knowledge base can answer). A router that tells
+those two apart, plus a fallback for anything else, is the whole point of this section.
+
+`agent_with_tool.py` above lets the model decide whether to call the tool. HW6 asks for
+the opposite: the code decides the route, the model doesn't get a say. So this is a
+second, separate entry point rather than a rewrite of the first one — the tool-calling
+script stays the "model decides" example, `agent_flow.py` is the "code decides" example.
+
+```text
+user question
+  -> router (keyword match, no LLM)
+     -> [token_status]   get_token_status()        -> observation -> answer
+     -> [policy_rag]      search() over FAISS index  -> observation -> answer
+     -> [clarification]   list_supported_topics()    -> observation -> answer
+```
+
+**Routes** (3, matched to the two things this project can actually answer, plus a
+fallback):
+- `token_status` — question names a `TKN-XXXXXX` reference or asks about a token's
+  current state ("is TKN-100234 still active")
+- `policy_rag` — conceptual question about tokenization, registration, payments, etc.,
+  matched against a fixed keyword list
+- `clarification` — neither of the above matched
+
+**Tools** (2, both fixed/mock, no network call):
+- `get_token_status` — reused from `external_tool.py`
+- `list_supported_topics` — new for this homework, defined in `agent_flow.py`, returns
+  the 5 topics from the metadata table above. Feeds the clarification route so a vague
+  question gets pointed somewhere useful instead of a flat "please rephrase"
+
+**State**, threaded through every step and returned in full: `user_question`,
+`selected_route`, `tool_calls` (name/args/result per call), `observations` (raw result
+of each step), `final_answer`.
+
+Routing is `if`/`elif` on keywords and the final answer is templated directly off the
+observation — no OpenAI call anywhere in this script. That's on purpose, not a shortcut:
+the point of the assignment is the workflow shape (router → action → observation → state
+→ answer), and a templated answer makes it obvious the shape holds regardless of answer
+quality.
+
+```bash
+python scripts/agent_flow.py                              # runs 5 built-in demo questions
+python scripts/agent_flow.py "What is the status of token TKN-100234?"
+```
+
+See `outputs/agent_flow_examples.md` for the 5 traced runs, including two where the
+router faithfully surfaces a retrieval-ranking issue already flagged in HW3 (rank-1 chunk
+isn't always the best match) instead of papering over it.
+
 ## Directory Layout
 
 ```text
@@ -373,9 +427,10 @@ rag/
     run_qa_examples.py         # Run the test question set and write outputs/
     external_tool.py           # get_token_status tool: input contract + validation
     agent_with_tool.py         # Orchestration: retrieval + tool-calling + final answer
+    agent_flow.py              # HW6: rule-based router + state, no LLM in the loop
   outputs/      # Generated: retrieval_examples.md, retrieval_comparison.md,
                 #            rag_answers_examples.md, prompt_improvements.md,
-                #            tool_examples.md
+                #            tool_examples.md, agent_flow_examples.md
   .env.example  # Copy to .env and fill in OPENAI_API_KEY
   .venv/        # Local Python 3.10 virtual environment (not committed)
   README.md
@@ -423,6 +478,10 @@ rag/
 11. Generate the full test-question report:
     ```
     python scripts/run_qa_examples.py
+    ```
+12. Run the rule-based agent workflow (no API key needed):
+    ```
+    python scripts/agent_flow.py
     ```
 
 ## Development Principles
