@@ -317,6 +317,96 @@ pipeline and writes:
 - `outputs/prompt_improvements.md`: before/after comparison of a naive prompt vs.
   the grounded prompt on a few selected questions
 
+## External Tool Integration
+
+`scripts/external_tool.py` adds `get_token_status`, a read tool that returns the *live*
+status of one Card-on-File token (`ACTIVE` / `SUSPENDED` / `DELETED`), masked PAN, expiry,
+and last-updated date from a mock token-vault API. Token status is dynamic, per-token
+state — it cannot be reliably stored in a static knowledge base, so a tool is the correct
+approach here, unlike conceptual questions ("how is a serviceId created?"), which stay
+answered by retrieval.
+
+```text
+question -> retrieve top-k chunks (context) -> model call with tool offered
+         -> [if tool requested] validate args -> execute -> feed result back -> final answer
+         -> [else] answer from retrieved context only
+```
+
+Validation (`external_tool.py`) happens before any lookup: `token_reference` must be
+present, a string, and match `TKN-XXXXXX` (6+ digits); on a malformed or unknown
+reference the tool returns a structured `{"error": ...}` instead of executing anything.
+The model only proposes a tool name and arguments — `scripts/agent_with_tool.py` decides
+whether they're safe to run.
+
+`scripts/agent_with_tool.py` is the orchestration layer: it reuses `search()` from
+`semantic_search.py` for retrieval, offers `get_token_status` to the model via OpenAI
+function calling, executes and validates any requested call, and asks for a final
+grounded answer. Requires `OPENAI_API_KEY`, same as `rag_answer.py`.
+
+```bash
+python scripts/agent_with_tool.py "What is the status of token TKN-100234?"
+python scripts/agent_with_tool.py "How is a serviceId created and what is it used for?"
+```
+
+See `outputs/tool_examples.md` for 5 worked examples (valid lookup, not-found, invalid
+format rejected by validation, a pure-retrieval contrast case, and a hybrid case combining
+the tool with retrieved context) with an explanation of why the tool is preferable to
+retrieval in each case.
+
+## Custom Agent Workflow
+
+**Use case**: same chatbot as the rest of this project — a Card-on-File integration
+assistant — but split into two things a developer actually asks for on a support
+channel: "how does X work" (documentation question) and "what's the current state of
+token Y" (live lookup, not something a knowledge base can answer). A router that tells
+those two apart, plus a fallback for anything else, is the whole point of this section.
+
+`agent_with_tool.py` above lets the model decide whether to call the tool. HW6 asks for
+the opposite: the code decides the route, the model doesn't get a say. So this is a
+second, separate entry point rather than a rewrite of the first one — the tool-calling
+script stays the "model decides" example, `agent_flow.py` is the "code decides" example.
+
+```text
+user question
+  -> router (keyword match, no LLM)
+     -> [token_status]   get_token_status()        -> observation -> answer
+     -> [policy_rag]      search() over FAISS index  -> observation -> answer
+     -> [clarification]   list_supported_topics()    -> observation -> answer
+```
+
+**Routes** (3, matched to the two things this project can actually answer, plus a
+fallback):
+- `token_status` — question names a `TKN-XXXXXX` reference or asks about a token's
+  current state ("is TKN-100234 still active")
+- `policy_rag` — conceptual question about tokenization, registration, payments, etc.,
+  matched against a fixed keyword list
+- `clarification` — neither of the above matched
+
+**Tools** (2, both fixed/mock, no network call):
+- `get_token_status` — reused from `external_tool.py`
+- `list_supported_topics` — new for this homework, defined in `agent_flow.py`, returns
+  the 5 topics from the metadata table above. Feeds the clarification route so a vague
+  question gets pointed somewhere useful instead of a flat "please rephrase"
+
+**State**, threaded through every step and returned in full: `user_question`,
+`selected_route`, `tool_calls` (name/args/result per call), `observations` (raw result
+of each step), `final_answer`.
+
+Routing is `if`/`elif` on keywords and the final answer is templated directly off the
+observation — no OpenAI call anywhere in this script. That's on purpose, not a shortcut:
+the point of the assignment is the workflow shape (router → action → observation → state
+→ answer), and a templated answer makes it obvious the shape holds regardless of answer
+quality.
+
+```bash
+python scripts/agent_flow.py                              # runs 5 built-in demo questions
+python scripts/agent_flow.py "What is the status of token TKN-100234?"
+```
+
+See `outputs/agent_flow_examples.md` for the 5 traced runs, including two where the
+router faithfully surfaces a retrieval-ranking issue already flagged in HW3 (rank-1 chunk
+isn't always the best match) instead of papering over it.
+
 ## Directory Layout
 
 ```text
@@ -335,8 +425,12 @@ rag/
     generate_retrieval_comparison.py  # Compare all 4 configurations, write outputs/
     rag_answer.py              # Retrieve + prompt + call the LLM for one question
     run_qa_examples.py         # Run the test question set and write outputs/
+    external_tool.py           # get_token_status tool: input contract + validation
+    agent_with_tool.py         # Orchestration: retrieval + tool-calling + final answer
+    agent_flow.py              # HW6: rule-based router + state, no LLM in the loop
   outputs/      # Generated: retrieval_examples.md, retrieval_comparison.md,
-                #            rag_answers_examples.md, prompt_improvements.md
+                #            rag_answers_examples.md, prompt_improvements.md,
+                #            tool_examples.md, agent_flow_examples.md
   .env.example  # Copy to .env and fill in OPENAI_API_KEY
   .venv/        # Local Python 3.10 virtual environment (not committed)
   README.md
@@ -384,6 +478,10 @@ rag/
 11. Generate the full test-question report:
     ```
     python scripts/run_qa_examples.py
+    ```
+12. Run the rule-based agent workflow (no API key needed):
+    ```
+    python scripts/agent_flow.py
     ```
 
 ## Development Principles
