@@ -461,6 +461,69 @@ code that already worked fine.
 
 ---
 
+## Evaluation & Observability (HW8)
+
+**Target under test**: `agent_with_tool.py::answer_question()`, not `agent_flow.py` or
+`rag_answer.py`. It's the only script that exercises every case type the assignment
+asks for in one place - RAG retrieval, model-decided tool calling, and the "not enough
+information" fallback - and because routing is model-decided here (the router in
+`agent_flow.py` is a fixed keyword match), tool misuse or non-use is actually an
+observable outcome instead of something the router already guarantees away.
+
+`scripts/run_eval.py` runs a fixed 10-question eval set through it, timing each call:
+
+```text
+question -> answer_question() [retrieve -> optional tool call -> LLM]
+         -> wall-clock latency
+         -> route_or_mode derived from tool_calls / the exact fallback string
+         -> task_success / groundedness / answer_quality filled in by hand
+         -> outputs/eval_results.md (table + full answers) and eval_summary.md
+```
+
+The 10 questions were picked to cover: a single-topic KB question, a question
+targeting the table row split across two chunks by the sentence-fallback splitter
+(chunking section above), two questions built from retrieval failures the
+[Improved Retrieval](#improved-retrieval) section documents at a smaller `top_k`, two
+token-status tool calls (one hit, one not-found), an out-of-domain question, a
+cross-topic question needing two source documents, an ambiguous one-liner, and a
+plausible-sounding but undocumented question (lost-device reason code). `task_success`,
+`groundedness`, and `answer_quality` are filled in by hand against each answer and the
+chunks it actually retrieved - that judgment call is the point of the assignment, not
+something to script around.
+
+```bash
+python scripts/run_eval.py
+```
+
+### Results
+
+9/10 success, 1/10 partial, 0/10 failure; groundedness good on all 6 cases it applies
+to; average latency 2.5s, max 4.5s. Cleaner than expected - two questions were built
+specifically to reproduce retrieval failures the Improved Retrieval section documents
+against `semantic_search.py`/`retrieval_improved.py` at `top_k=3`/`final_k=3`. Neither
+reproduced here: `agent_with_tool.py` uses `top_k=4`, and that one extra candidate was
+enough both times.
+
+Full table and every answer: `outputs/eval_results.md`. Aggregate metrics
+(`success_rate`, `groundedness_good_rate`, `average_latency_ms`, `top_error_types`):
+`outputs/eval_summary.md`. Full write-up: `outputs/quality_report.md`.
+
+**3 main problems found:**
+1. Ambiguous questions get silently resolved instead of clarified - "Tell me about
+   tokens." gets a broad, accurate, grounded answer spanning three topics, with no
+   indication to the user that the system picked the scope on their behalf.
+   `agent_with_tool.py` has no clarification route; that logic only exists in
+   `agent_flow.py`'s router, which this script doesn't share.
+2. The fallback sentence isn't emitted verbatim. The system prompt requires citing
+   sources on every answer, including declines, so the "say exactly" instruction for
+   the not-enough-info case never actually matches character-for-character. Harmless
+   for a human reader, but it broke `route_for()`'s exact-string check in this same
+   script, silently mislabeling two fallback cases as `RAG`.
+3. This eval set didn't find the system's actual breaking point. Every question landed
+   inside `top_k=4`'s comfort zone, including the two built to reproduce known
+   failures at smaller `k` - a real result, but a statement about these 10 questions,
+   not a general claim that `top_k=4` is safe.
+
 ## Directory Layout
 
 ```text
@@ -483,10 +546,12 @@ rag/
     agent_with_tool.py         # Orchestration: retrieval + tool-calling + final answer
     agent_flow.py              # HW6: rule-based router + state, no LLM in the loop
     langgraph_flow.py          # HW7: same workflow as agent_flow.py, on LangGraph
+    run_eval.py                # HW8: eval set + observability metrics for agent_with_tool.py
   outputs/      # Generated: retrieval_examples.md, retrieval_comparison.md,
                 #            rag_answers_examples.md, prompt_improvements.md,
                 #            tool_examples.md, agent_flow_examples.md,
-                #            langgraph_examples.md
+                #            langgraph_examples.md, eval_results.md,
+                #            eval_summary.md, quality_report.md
   .env.example  # Copy to .env and fill in OPENAI_API_KEY
   .venv/        # Local Python 3.10 virtual environment (not committed)
   README.md
@@ -543,6 +608,12 @@ rag/
     ```
     python scripts/langgraph_flow.py
     ```
+14. Run the eval set against `agent_with_tool.py` and generate the eval table +
+    metrics:
+    ```
+    python scripts/run_eval.py
+    ```
+    See `outputs/quality_report.md` for the write-up.
 
 ## Development Principles
 
