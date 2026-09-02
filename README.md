@@ -407,6 +407,60 @@ See `outputs/agent_flow_examples.md` for the 5 traced runs, including two where 
 router faithfully surfaces a retrieval-ranking issue already flagged in HW3 (rank-1 chunk
 isn't always the best match) instead of papering over it.
 
+## Framework Workflow (HW7)
+
+Picked LangGraph, mainly because `agent_flow.py` already has state, 3 routes
+and a conditional branch - that maps onto State/Node/Edge pretty directly,
+no need for CrewAI/DeepAgents-level stuff for 3 routes.
+
+`scripts/langgraph_flow.py` reuses the router and tools from `agent_flow.py`
+as-is (`route_question`, `get_token_status`, `search`, `list_supported_topics`).
+
+State:
+```python
+class AgentState(TypedDict):
+    user_question: str
+    selected_route: str
+    tool_calls: list[dict[str, Any]]
+    observations: list[Any]
+    tool_result: dict[str, Any]
+    final_answer: str
+    executed_nodes: list[str]
+```
+
+Nodes: `classify_request`, `run_policy_rag`, `run_token_status`,
+`ask_clarification`, `build_answer`. `build_answer` is the one thing not in
+HW6 - there the answer was templated inline per route, here it's its own
+node after the conditional edge.
+
+Edges: `classify_request` fans out to one of the three route nodes via a
+conditional edge on `selected_route`, all three route nodes go to
+`build_answer`, then `END`.
+
+```bash
+python scripts/langgraph_flow.py                          # 3 demo questions, writes outputs/langgraph_examples.md
+python scripts/langgraph_flow.py "What is the status of token TKN-100234?"
+```
+
+See `outputs/langgraph_examples.md` for the 3 traced runs.
+
+### Custom flow vs LangGraph
+
+| Aspect | `agent_flow.py` | `langgraph_flow.py` |
+|---|---|---|
+| Code for the same 3 routes | 1 function, if/elif, answer built inline | 5 node functions + graph wiring |
+| Reading the workflow | Read the function top to bottom | `add_node`/`add_edge` calls spell out the shape |
+| State | Plain dict | Same fields, `TypedDict` |
+| Routing | `if`/`elif` | `add_conditional_edges`, same router underneath |
+| Adding a route | One more `elif` | One more node + one more edge mapping entry |
+
+For 3 routes and no cycles, LangGraph didn't buy much here - same logic,
+more files. It'd matter more with retries, a loop back to `classify_request`,
+or a couple more branches; at this size it's mostly extra structure around
+code that already worked fine.
+
+---
+
 ## Directory Layout
 
 ```text
@@ -428,9 +482,11 @@ rag/
     external_tool.py           # get_token_status tool: input contract + validation
     agent_with_tool.py         # Orchestration: retrieval + tool-calling + final answer
     agent_flow.py              # HW6: rule-based router + state, no LLM in the loop
+    langgraph_flow.py          # HW7: same workflow as agent_flow.py, on LangGraph
   outputs/      # Generated: retrieval_examples.md, retrieval_comparison.md,
                 #            rag_answers_examples.md, prompt_improvements.md,
-                #            tool_examples.md, agent_flow_examples.md
+                #            tool_examples.md, agent_flow_examples.md,
+                #            langgraph_examples.md
   .env.example  # Copy to .env and fill in OPENAI_API_KEY
   .venv/        # Local Python 3.10 virtual environment (not committed)
   README.md
@@ -482,6 +538,10 @@ rag/
 12. Run the rule-based agent workflow (no API key needed):
     ```
     python scripts/agent_flow.py
+    ```
+13. Run the same workflow on LangGraph (no API key needed):
+    ```
+    python scripts/langgraph_flow.py
     ```
 
 ## Development Principles
