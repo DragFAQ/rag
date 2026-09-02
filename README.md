@@ -498,7 +498,7 @@ python scripts/run_eval.py
 ### Results
 
 9/10 success, 1/10 partial, 0/10 failure; groundedness good on all 6 cases it applies
-to; average latency 2.5s, max 4.5s. Cleaner than expected - two questions were built
+to; average latency 2.9s, max 5.2s. Cleaner than expected - two questions were built
 specifically to reproduce retrieval failures the Improved Retrieval section documents
 against `semantic_search.py`/`retrieval_improved.py` at `top_k=3`/`final_k=3`. Neither
 reproduced here: `agent_with_tool.py` uses `top_k=4`, and that one extra candidate was

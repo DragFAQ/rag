@@ -15,7 +15,7 @@ question. Full table and every answer in `outputs/eval_results.md`, the numbers 
 
 9/10 success, 1/10 partial, 0/10 failure. Groundedness good on all 6 cases it
 applies to (the other 4 are tool calls or correct declines - "grounded in retrieved
-context" isn't the right question for those). Average latency 2.5s, max 3.7s.
+context" isn't the right question for those). Average latency 2.9s, max 5.2s.
 Zero hallucinations, zero wrong tool calls, zero wrong-retrieval failures.
 
 Cleaner than expected. Cases 3 and 7 were deliberately built from retrieval
